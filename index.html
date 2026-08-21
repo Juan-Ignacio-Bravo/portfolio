@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Juan Ignacio Bravo, Content Strategist &amp; Esports Coach</title>
+<link rel="icon" type="image/png" href="assets/cs-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -457,8 +458,8 @@
   }
 
   /* ---------- PROJECT ACCENT TREATMENTS ---------- */
-  .project-block{position:relative; z-index:0; transition:transform .7s ease, box-shadow .25s ease, opacity .7s ease; overflow:hidden;}
-  .project-block:hover{transform:translateY(-3px); box-shadow:0 14px 32px rgba(23,24,28,0.09); transition:transform .2s ease, box-shadow .2s ease;}
+  .project-block{position:relative; z-index:0; transition:transform .7s ease, box-shadow .25s ease, opacity .7s ease, border-color .2s ease; overflow:hidden;}
+  .project-block:hover{border-color:var(--tally);}
   .proj-watermark{
     position:absolute; bottom:14px; right:14px; width:52px; height:auto; opacity:1;
     pointer-events:none; z-index:1; filter:none;
@@ -686,6 +687,19 @@
     .feat-carousel[data-ratio="portrait"] .feat-item.featured{ width:200px; }
   }
 
+  /* lock each carousel's track height to its featured item's height so the
+     surrounding project-block doesn't visibly grow/shrink as the highlight moves */
+  .feat-carousel[data-highlight="left"]:not([data-ratio]) .feat-track{ min-height:306px; }
+  .feat-carousel[data-highlight="middle"]:not([data-ratio]) .feat-track{ min-height:276px; }
+  .feat-carousel[data-ratio="vertical"] .feat-track{ min-height:516px; }
+  .feat-carousel[data-ratio="portrait"] .feat-track{ min-height:399px; }
+  @media (max-width:640px){
+    .feat-carousel[data-highlight="left"]:not([data-ratio]) .feat-track{ min-height:201px; }
+    .feat-carousel[data-highlight="middle"]:not([data-ratio]) .feat-track{ min-height:194px; }
+    .feat-carousel[data-ratio="vertical"] .feat-track{ min-height:392px; }
+    .feat-carousel[data-ratio="portrait"] .feat-track{ min-height:286px; }
+  }
+
   /* reel example: enlarged, true 1080x1920 phone-screen showcase */
   .reel-pair .reel-card, .reel-pair .instagram-card{width:320px; flex:0 0 320px;}
   .reel-pair .instagram-card blockquote.instagram-media a{height:569px;}
@@ -802,21 +816,17 @@
   .project-block{
     border-radius:var(--radius-lg); border-width:2px;
     box-shadow:7px 7px 0 var(--line);
-    transition:transform .2s ease, box-shadow .2s ease;
+    transition:border-color .2s ease;
   }
-  .project-block:hover{ box-shadow:12px 12px 0 var(--line); transform:translate(-5px,-5px); }
+  .project-block:hover{ border-color:var(--tally); }
   .project-block.gs{ box-shadow:7px 7px 0 #FF8A4D; }
-  .project-block.gs:hover{ box-shadow:12px 12px 0 #FF8A4D; }
+  .project-block.gs:hover{ border-color:#FF8A4D; }
   .project-block.esp{ box-shadow:7px 7px 0 #E8FF3D; }
-  .project-block.esp:hover{ box-shadow:12px 12px 0 #E8FF3D; }
+  .project-block.esp:hover{ border-color:#E8FF3D; }
   .project-block.cs{ box-shadow:7px 7px 0 #4fb8ff; }
-  .project-block.cs:hover{ box-shadow:12px 12px 0 #4fb8ff; }
+  .project-block.cs:hover{ border-color:#4fb8ff; }
   @media (max-width:640px){
     .project-block{ box-shadow:5px 5px 0 var(--line); }
-    .project-block:hover{ box-shadow:8px 8px 0 var(--line); transform:translate(-3px,-3px); }
-    .project-block.gs{ box-shadow:5px 5px 0 #FF8A4D; } .project-block.gs:hover{ box-shadow:8px 8px 0 #FF8A4D; }
-    .project-block.esp{ box-shadow:5px 5px 0 #E8FF3D; } .project-block.esp:hover{ box-shadow:8px 8px 0 #E8FF3D; }
-    .project-block.cs{ box-shadow:5px 5px 0 #4fb8ff; } .project-block.cs:hover{ box-shadow:8px 8px 0 #4fb8ff; }
   }
 
   /* media tiles: rounded, bordered, scattered sticker rotation, settle on hover */
@@ -874,7 +884,9 @@
     box-shadow:3px 3px 0 var(--tally); background:#000; cursor:zoom-in;
     transition:transform .2s ease, box-shadow .2s ease;
   }
-  .t-scatter video{ cursor:default; }
+  .t-scatter video{ cursor:default; object-fit:contain; }
+  .t-scatter.t-scatter-solo{ width:170px; }
+  @media (max-width:760px){ .t-scatter.t-scatter-solo{ width:130px; } }
   .t-item.coach .t-scatter img, .t-item.coach .t-scatter video{ box-shadow:3px 3px 0 var(--flow); }
   .t-scatter img:nth-child(odd){ transform:rotate(-3deg); align-self:flex-start; }
   .t-scatter img:nth-child(even){ transform:rotate(3deg); align-self:flex-end; }
@@ -904,7 +916,12 @@
     content:'\201C'; font-family:var(--display); font-weight:800; font-size:44px; color:var(--flow);
     line-height:0.6; display:block; margin-bottom:10px;
   }
+  .testimonial-attr{ display:flex; align-items:center; gap:12px; }
+  .testimonial-photo{ flex:0 0 auto; width:46px; height:46px; border-radius:50%; overflow:hidden; border:2px solid var(--ink); display:block; }
+  .testimonial-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
   .testimonial-name{ font-family:var(--display); font-weight:700; text-transform:uppercase; font-size:15px; }
+  .testimonial-name a{ color:inherit; text-decoration:none; border-bottom:1px solid transparent; transition:color .15s ease, border-color .15s ease; }
+  .testimonial-name a:hover{ color:var(--flow); border-color:var(--flow); }
   .testimonial-role{ font-family:var(--mono); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.03em; margin-top:3px; }
 
   .review-stat{ display:flex; align-items:baseline; gap:12px; margin-bottom:22px; }
@@ -1142,7 +1159,7 @@
           <button class="car-btn prev" type="button" aria-label="Scroll left">‹</button>
           <div class="carousel-track">
             <div class="instagram-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C-JQjkIv7wx/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/C-JQjkIv7wx/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
-            <div class="instagram-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DQm4Bh9gag-/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DQm4Bh9gag-/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
+            <div class="instagram-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C-omVjOteOW/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/C-omVjOteOW/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
             <div class="instagram-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DBKlsgsNOoo/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DBKlsgsNOoo/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
             <div class="instagram-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DAHk-7zNDx9/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DAHk-7zNDx9/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
             <div class="instagram-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C7VTqnURosn/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/C7VTqnURosn/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
@@ -1366,7 +1383,7 @@
     <div class="timeline">
 
       <div class="t-item coach reveal-left">
-        <div class="t-scatter">
+        <div class="t-scatter t-scatter-solo">
           <img src="assets/about-ra-speech.jpg" alt="Speaking at Fisher College's Public Speaking Contest" loading="lazy">
         </div>
         <div class="t-date">Aug 2025 – Jun 2026</div>
@@ -1549,12 +1566,12 @@
           <div class="lang-bar"><div class="lang-fill" style="width:100%; background:var(--tally);"></div></div>
         </div>
         <div class="lang-row">
-          <div class="lang-top"><span>English</span><span>Proficient</span></div>
-          <div class="lang-bar"><div class="lang-fill" style="width:88%;"></div></div>
+          <div class="lang-top"><span>English</span><span>Native</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:100%;"></div></div>
         </div>
         <div class="lang-row">
-          <div class="lang-top"><span>Portuguese</span><span>Advanced</span></div>
-          <div class="lang-bar"><div class="lang-fill" style="width:72%;"></div></div>
+          <div class="lang-top"><span>Portuguese</span><span>Proficient</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:88%;"></div></div>
         </div>
         <div class="lang-row">
           <div class="lang-top"><span>Italian</span><span>Beginner</span></div>
@@ -1584,15 +1601,25 @@
       <div class="testimonial-card">
         <p class="testimonial-quote">I had the pleasure of supervising Juan in his role as a Resident Assistant at Fisher College. He not only displayed incredible time management and motivation to complete his responsibilities independently, but also proved to be a wonderful leader for our students. A natural problem-solver, Juan was always ready to advocate for his residents' wellbeing and approached every scenario with positivity and professionalism. I wholeheartedly recommend Juan for any role he decides to take on because he puts his best work into every project that comes his way.</p>
         <div class="testimonial-attr">
-          <div class="testimonial-name">Emily Deller, MBA</div>
-          <div class="testimonial-role">Assistant Director of Housing, Fisher College · supervised Juan directly</div>
+          <a class="testimonial-photo" href="https://www.linkedin.com/in/emily-deller-mba-4b23071b0/" target="_blank" rel="noopener" aria-label="Emily Deller on LinkedIn">
+            <img src="assets/testimonial-emily.jpg" alt="Emily Deller" loading="lazy">
+          </a>
+          <div>
+            <div class="testimonial-name"><a href="https://www.linkedin.com/in/emily-deller-mba-4b23071b0/" target="_blank" rel="noopener">Emily Deller, MBA</a></div>
+            <div class="testimonial-role">Assistant Director of Housing, Fisher College · supervised Juan directly</div>
+          </div>
         </div>
       </div>
       <div class="testimonial-card">
         <p class="testimonial-quote">Juan always puts his best effort in whatever he does. He is proactive, positive, and open minded individual. It was a pleasure to teach him. His team project, "Branding analysis of Gangnam Spice," which was conducted in my Brand Strategy class in 2025 was one of the best student work. It gave him the opportunity to do his internship with Gangnam Spice as a social media and marketing.</p>
         <div class="testimonial-attr">
-          <div class="testimonial-name">SY (Ashley) Chung, DBA</div>
-          <div class="testimonial-role">Assistant Professor &amp; Program Director, Marketing · taught Juan</div>
+          <a class="testimonial-photo" href="https://www.linkedin.com/in/syashleychung/" target="_blank" rel="noopener" aria-label="SY (Ashley) Chung on LinkedIn">
+            <img src="assets/testimonial-chung.jpg" alt="SY (Ashley) Chung" loading="lazy">
+          </a>
+          <div>
+            <div class="testimonial-name"><a href="https://www.linkedin.com/in/syashleychung/" target="_blank" rel="noopener">SY (Ashley) Chung, DBA</a></div>
+            <div class="testimonial-role">Assistant Professor &amp; Program Director, Marketing · taught Juan</div>
+          </div>
         </div>
       </div>
     </div>
