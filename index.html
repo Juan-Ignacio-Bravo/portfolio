@@ -341,12 +341,15 @@
     background:#000; overflow:hidden;
   }
   .embed-facade img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.72; }
-  .embed-facade .embed-play{
+  /* shared play-button look, reused both inside a facade (flex-centered)
+     and as a free-floating overlay on a native <video poster> (absolutely
+     centered) — see .local-video-facade below */
+  .embed-play{
     position:relative; z-index:2; width:50px; height:50px; border-radius:50%; flex:0 0 auto;
     background:rgba(255,91,51,0.92); box-shadow:0 4px 14px rgba(0,0,0,0.4);
-    transition:transform .2s ease, background .2s ease;
+    transition:transform .2s ease, background .2s ease; cursor:pointer;
   }
-  .embed-facade .embed-play::before{
+  .embed-play::before{
     content:''; position:absolute; top:50%; left:54%; transform:translate(-50%,-50%);
     border-style:solid; border-width:8px 0 8px 13px; border-color:transparent transparent transparent #fff;
   }
@@ -361,6 +364,22 @@
   .embed-facade.is-drive .embed-play{ background:rgba(47,143,130,0.92); }
   .embed-facade.is-drive:hover .embed-play, .embed-facade.is-drive:focus-visible .embed-play{ background:var(--flow); }
   .embed-facade:focus-visible{ outline:2px solid var(--tally); outline-offset:-2px; }
+  /* image-kind Drive facades (design slides, documents) aren't videos, so a
+     play-button affordance is misleading — show a plain, clean thumbnail */
+  .embed-facade[data-embed-kind="image"] .embed-play,
+  .embed-facade[data-embed-kind="image"] .embed-label{ display:none; }
+  .embed-facade[data-embed-kind="image"] img{ opacity:1; }
+  .embed-facade[data-embed-kind="image"]:hover img{ opacity:0.85; }
+
+  /* a native <video poster> preview with a custom centered play button,
+     for local video files (not lazy-loaded, so no facade needed — just an
+     on-brand play affordance instead of the black first-frame default) */
+  .local-video-facade{ position:relative; }
+  .local-video-facade .embed-play{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:3;
+  }
+  .local-video-facade .embed-play:hover{ transform:translate(-50%,-50%) scale(1.08); background:var(--tally); }
+  .local-video-facade.is-playing .embed-play{ display:none; }
 
   /* carousels */
   .carousel{position:relative; margin-bottom:28px;}
@@ -1324,7 +1343,7 @@
         <div class="subhead-mini">Rebrand overview</div>
         <div class="media-grid esp-media">
           <div class="media-cell">
-            <div class="media-embed"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1jXE0l5eo-8x-bGMUYdhT9CGtemiPesEi/preview" data-embed-title="Esportian brand guidelines" role="button" tabindex="0" aria-label="Play: Esportian brand guidelines"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian brand guidelines</span></div></div>
+            <div class="media-embed"><div class="embed-facade" data-embed-kind="image" data-embed-src="https://drive.google.com/file/d/1jXE0l5eo-8x-bGMUYdhT9CGtemiPesEi/preview" data-embed-title="Esportian brand guidelines" role="button" tabindex="0" aria-label="Play: Esportian brand guidelines"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian brand guidelines</span></div></div>
             <div class="media-cap">Brand guidelines</div>
           </div>
           <div class="media-cell">
@@ -1336,7 +1355,7 @@
             <div class="media-cap">Launch video</div>
           </div>
           <div class="media-cell">
-            <div class="media-embed"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1TF9r79BRGgtaarO5rN3xLsxOFSS6Fv3G/preview" data-embed-title="Esportian Live Talk graphic, design by Mario Agudello" role="button" tabindex="0" aria-label="Play: Esportian Live Talk graphic, design by Mario Agudello"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian Live Talk graphic, design by Mario Agudello</span></div></div>
+            <div class="media-embed"><div class="embed-facade" data-embed-kind="image" data-embed-src="https://drive.google.com/file/d/1TF9r79BRGgtaarO5rN3xLsxOFSS6Fv3G/preview" data-embed-title="Esportian Live Talk graphic, design by Mario Agudello" role="button" tabindex="0" aria-label="Play: Esportian Live Talk graphic, design by Mario Agudello"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian Live Talk graphic, design by Mario Agudello</span></div></div>
             <div class="media-cap">Live Talk design, Mario Agudello</div>
           </div>
         </div>
@@ -1345,20 +1364,23 @@
         <div class="feat-carousel" data-highlight="left" data-ratio="portrait">
           <button class="car-btn prev" type="button" aria-label="Scroll left">‹</button>
           <div class="feat-track">
-            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1cjboqb2Snp6wf0hf7AJthcPiR4ZK3bd3/preview" data-embed-title="Esportian carousel slide 1" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 1"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 1</span></div></div>
-            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1Nl1Xi4RZ9WfGO2eck23V_r0iIY_7_tpn/preview" data-embed-title="Esportian carousel slide 2" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 2"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 2</span></div></div>
-            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1dM08WHC-m3u_2is2L7hzkKra0ARbrbDM/preview" data-embed-title="Esportian carousel slide 3" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 3"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 3</span></div></div>
-            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1zfA4K2wcoRJnJxocH5pJAh-VyaSRTcBa/preview" data-embed-title="Esportian carousel slide 4" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 4"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 4</span></div></div>
-            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1L2g4Lb-m9slSz46XX8AC5Af8DPkvaSK9/preview" data-embed-title="Esportian carousel slide 5" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 5"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 5</span></div></div>
-            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1gwzc6gmf8-IRrh0j6WwxFv7ymJ9fKGhr/preview" data-embed-title="Esportian carousel slide 6" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 6"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 6</span></div></div>
-            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1-oDTRuuf6Es7JYUotFISw6GcBq04OsCp/preview" data-embed-title="Esportian carousel slide 7" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 7"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 7</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-kind="image" data-embed-src="https://drive.google.com/file/d/1cjboqb2Snp6wf0hf7AJthcPiR4ZK3bd3/preview" data-embed-title="Esportian carousel slide 1" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 1"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 1</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-kind="image" data-embed-src="https://drive.google.com/file/d/1Nl1Xi4RZ9WfGO2eck23V_r0iIY_7_tpn/preview" data-embed-title="Esportian carousel slide 2" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 2"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 2</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-kind="image" data-embed-src="https://drive.google.com/file/d/1dM08WHC-m3u_2is2L7hzkKra0ARbrbDM/preview" data-embed-title="Esportian carousel slide 3" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 3"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 3</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-kind="image" data-embed-src="https://drive.google.com/file/d/1zfA4K2wcoRJnJxocH5pJAh-VyaSRTcBa/preview" data-embed-title="Esportian carousel slide 4" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 4"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 4</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-kind="image" data-embed-src="https://drive.google.com/file/d/1L2g4Lb-m9slSz46XX8AC5Af8DPkvaSK9/preview" data-embed-title="Esportian carousel slide 5" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 5"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 5</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-kind="image" data-embed-src="https://drive.google.com/file/d/1gwzc6gmf8-IRrh0j6WwxFv7ymJ9fKGhr/preview" data-embed-title="Esportian carousel slide 6" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 6"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 6</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-kind="image" data-embed-src="https://drive.google.com/file/d/1-oDTRuuf6Es7JYUotFISw6GcBq04OsCp/preview" data-embed-title="Esportian carousel slide 7" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 7"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 7</span></div></div>
           </div>
           <button class="car-btn next" type="button" aria-label="Scroll right">›</button>
         </div>
 
         <div class="subhead-mini">Reel examples</div>
         <div class="reel-pair">
-          <div class="reel-card"><video src="assets/reel-10.mp4" controls preload="metadata" playsinline></video></div>
+          <div class="reel-card local-video-facade">
+            <video src="assets/reel-10.mp4" controls preload="metadata" playsinline poster="assets/reel-10-poster.jpg"></video>
+            <span class="embed-play" aria-hidden="true"></span>
+          </div>
           <div class="instagram-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWE7V7XCILp/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DWE7V7XCILp/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
         </div>
 
@@ -1949,6 +1971,19 @@
       }
     });
   })();
+
+  // Local video preview: clicking the custom play button (or the native
+  // controls) starts playback and swaps out our overlay button.
+  document.querySelectorAll('.local-video-facade').forEach(function(wrap){
+    var video = wrap.querySelector('video');
+    var btn = wrap.querySelector('.embed-play');
+    if(!video || !btn) return;
+    btn.addEventListener('click', function(){
+      video.play().catch(function(){});
+    });
+    video.addEventListener('play', function(){ wrap.classList.add('is-playing'); });
+    video.addEventListener('pause', function(){ wrap.classList.remove('is-playing'); });
+  });
 
   // Lazy embed facades: YouTube and Google Drive iframes are heavy (each one
   // boots its own player/JS bundle), and this page embeds dozens of them.
