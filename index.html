@@ -59,25 +59,17 @@
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
   }
 
-  /* corner-to-corner gradient wash: the same visual language as the hero
-     photo's diagonal tally->flow border (linear-gradient(155deg, tally,
-     flow)), just stretched across the whole page at light/pastel opacity
-     instead of full saturation. A plain linear-gradient on body itself
-     (not a separate ::before layer) scales correctly to the full document
-     height automatically, repeating every ~1400px down the page so the
-     transitions stay present the whole way down rather than fading out
-     after the first screen. */
+  /* corner-to-corner gradient wash: same visual language as the hero photo's
+     diagonal tally->flow border, just stretched across the whole page at
+     light/pastel opacity. These two book-end gradients span the full body
+     height naturally (no background-size/repeat) so there's exactly one
+     smooth top-to-bottom transition — no repeat means no seam, however
+     long the page gets. */
   body{
     background:
-      linear-gradient(155deg, rgba(255,91,51,0.24) 0%, rgba(255,91,51,0) 32%),
-      linear-gradient(155deg, rgba(47,143,130,0) 65%, rgba(47,143,130,0.26) 100%),
-      linear-gradient(20deg, rgba(232,255,61,0.17) 0%, rgba(232,255,61,0) 26%),
-      linear-gradient(200deg, rgba(214,39,60,0.17) 0%, rgba(214,39,60,0) 26%),
-      linear-gradient(110deg, rgba(79,184,255,0.16) 0%, rgba(79,184,255,0) 22%),
-      linear-gradient(295deg, rgba(242,163,61,0.16) 0%, rgba(242,163,61,0) 22%),
+      linear-gradient(155deg, rgba(255,91,51,0.20) 0%, rgba(255,91,51,0) 26%),
+      linear-gradient(155deg, rgba(47,143,130,0) 76%, rgba(47,143,130,0.22) 100%),
       var(--paper);
-    background-repeat:repeat-y;
-    background-size:100% 1400px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 100%;
     color:var(--ink);
     font-family:var(--body);
     line-height:1.55;
@@ -85,20 +77,27 @@
     position:relative;
   }
 
-  /* extra soft accent blooms layered on top for a bit more organic variety
-     along the scroll, same palette, same light-pastel treatment */
+  /* extra color spread the rest of the way down the page: each bloom is a
+     soft, fully self-contained radial (fades to transparent on every edge),
+     positioned by percentage against the full document height — never
+     tiled/repeated, so there's nothing that can visibly seam or misalign
+     the way a repeating background would. */
   body::before{
     content:'';
     position:absolute; inset:0; z-index:-1; pointer-events:none;
     background:
-      radial-gradient(ellipse 680px 620px at 55% 17%, rgba(232,255,61,0.11), transparent 65%),
-      radial-gradient(ellipse 700px 640px at 32% 40%, rgba(255,91,51,0.11), transparent 65%),
-      radial-gradient(ellipse 680px 620px at 62% 62%, rgba(47,143,130,0.11), transparent 65%),
-      radial-gradient(ellipse 600px 720px at 0% 70%, rgba(214,39,60,0.16), transparent 62%),
-      radial-gradient(ellipse 580px 700px at 100% 78%, rgba(79,184,255,0.14), transparent 62%),
-      radial-gradient(ellipse 700px 640px at 40% 86%, rgba(242,163,61,0.14), transparent 65%),
-      radial-gradient(ellipse 620px 780px at 3% 94%, rgba(255,91,51,0.18), transparent 62%),
-      radial-gradient(ellipse 560px 700px at 97% 100%, rgba(47,143,130,0.19), transparent 62%);
+      radial-gradient(ellipse 700px 640px at 8% 8%, rgba(255,91,51,0.15), transparent 62%),
+      radial-gradient(ellipse 640px 600px at 94% 14%, rgba(47,143,130,0.15), transparent 62%),
+      radial-gradient(ellipse 680px 620px at 55% 21%, rgba(232,255,61,0.13), transparent 65%),
+      radial-gradient(ellipse 620px 600px at 4% 32%, rgba(79,184,255,0.14), transparent 62%),
+      radial-gradient(ellipse 660px 620px at 96% 40%, rgba(214,39,60,0.15), transparent 62%),
+      radial-gradient(ellipse 700px 640px at 30% 50%, rgba(242,163,61,0.14), transparent 65%),
+      radial-gradient(ellipse 660px 620px at 90% 58%, rgba(255,91,51,0.15), transparent 62%),
+      radial-gradient(ellipse 680px 620px at 10% 66%, rgba(47,143,130,0.15), transparent 62%),
+      radial-gradient(ellipse 640px 600px at 60% 74%, rgba(232,255,61,0.13), transparent 65%),
+      radial-gradient(ellipse 660px 620px at 96% 84%, rgba(79,184,255,0.14), transparent 62%),
+      radial-gradient(ellipse 700px 640px at 6% 92%, rgba(214,39,60,0.16), transparent 62%),
+      radial-gradient(ellipse 660px 620px at 92% 98%, rgba(242,163,61,0.15), transparent 62%);
   }
 
   a{color:inherit;}
