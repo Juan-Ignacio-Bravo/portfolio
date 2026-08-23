@@ -425,6 +425,12 @@
   .reel-pair{display:flex; gap:16px; justify-content:center; align-items:flex-start; flex-wrap:wrap; margin-bottom:28px;}
   .reel-pair .reel-card, .reel-pair .instagram-card{width:200px; flex:0 0 200px;}
   .reel-pair .instagram-card blockquote.instagram-media a{height:356px;}
+  /* crop the embed to just its header + media, hiding the like/comment/
+     "view more on Instagram" chrome Instagram renders below that — the
+     embed is a cross-origin iframe so this is the only lever available
+     from the parent page; height is an estimate (header ~60px + the
+     video's own 9:16 height at this card width) */
+  .reel-pair .instagram-card-trimmed{ max-height:410px; overflow:hidden; }
 
   .media-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:28px;}
   @media (max-width:640px){ .media-grid{grid-template-columns:1fr;} }
@@ -801,9 +807,11 @@
   /* reel example: enlarged, true 1080x1920 phone-screen showcase */
   .reel-pair .reel-card, .reel-pair .instagram-card{width:320px; flex:0 0 320px;}
   .reel-pair .instagram-card blockquote.instagram-media a{height:569px;}
+  .reel-pair .instagram-card-trimmed{ max-height:634px; }
   @media (max-width:480px){
     .reel-pair .reel-card, .reel-pair .instagram-card{width:230px; flex:0 0 230px;}
     .reel-pair .instagram-card blockquote.instagram-media a{height:409px;}
+    .reel-pair .instagram-card-trimmed{ max-height:469px; }
   }
 
   /* ============ MODERN / INTERACTIVE LAYER ============ */
@@ -1381,7 +1389,7 @@
             <video src="assets/reel-10.mp4" controls preload="metadata" playsinline poster="assets/reel-10-poster.jpg"></video>
             <span class="embed-play" aria-hidden="true"></span>
           </div>
-          <div class="instagram-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWE7V7XCILp/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DWE7V7XCILp/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
+          <div class="instagram-card instagram-card-trimmed"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWE7V7XCILp/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DWE7V7XCILp/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
         </div>
 
         </div></div>
@@ -2244,8 +2252,7 @@
         }
       });
     }
-    function apply(){
-      styleItems();
+    function scrollToTarget(){
       var target = items[idx];
       var offset;
       if(mode === 'middle'){
@@ -2254,6 +2261,17 @@
         offset = target.offsetLeft - 14;
       }
       track.scrollTo({left: Math.max(0, offset), behavior:'smooth'});
+    }
+    function apply(){
+      styleItems();
+      scrollToTarget();
+      // the featured item's width is still mid-transition (~450ms) when the
+      // line above reads its offsetLeft, so that first scroll targets a
+      // slightly stale position — without a follow-up correction the item
+      // can end up partway out of view, clipped by the track/card edge once
+      // it finishes growing. Re-issue the scroll once the resize settles.
+      clearTimeout(car._featSettleTimer);
+      car._featSettleTimer = setTimeout(scrollToTarget, 480);
     }
     if(prevBtn) prevBtn.addEventListener('click', function(){ idx = Math.max(0, idx - 1); apply(); });
     if(nextBtn) nextBtn.addEventListener('click', function(){ idx = Math.min(items.length - 1, idx + 1); apply(); });
