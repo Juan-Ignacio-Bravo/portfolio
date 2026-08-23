@@ -503,15 +503,24 @@
   }
 
   /* soft ambient color washes + fine dot-grid texture so the paper-colored
-     sections never read as flat empty paper behind the content blocks */
+     sections never read as flat empty paper behind the content blocks.
+     sec-alt-bg sections (Projects, Experience) have a solid background
+     color, which fully blocks the body-level gradient wash from showing
+     through — so this rule carries its own full-strength color, anchored
+     mostly in the margins (ellipse centers pushed past 0%/100% x so only
+     their edge bleeds into the 1080px content column) rather than behind
+     the cards themselves. */
   .sec-alt-bg{background-color:#EADCC3;}
   #about, #experience, #skills, #testimonials, .proj-section{
     background-image:
       radial-gradient(circle, rgba(23,24,28,0.09) 1.6px, transparent 1.6px),
-      radial-gradient(ellipse 640px 420px at 94% 4%, rgba(255,91,51,0.08), transparent 62%),
-      radial-gradient(ellipse 560px 420px at 2% 98%, rgba(47,143,130,0.09), transparent 62%),
-      radial-gradient(ellipse 500px 380px at 50% 50%, rgba(255,91,51,0.04), transparent 70%);
-    background-size:22px 22px, auto, auto, auto;
+      radial-gradient(ellipse 720px 640px at -6% 6%, rgba(255,91,51,0.20), transparent 62%),
+      radial-gradient(ellipse 680px 620px at 106% 14%, rgba(47,143,130,0.20), transparent 62%),
+      radial-gradient(ellipse 700px 640px at -8% 55%, rgba(79,184,255,0.18), transparent 62%),
+      radial-gradient(ellipse 680px 620px at 108% 62%, rgba(232,255,61,0.17), transparent 62%),
+      radial-gradient(ellipse 720px 640px at -6% 96%, rgba(214,39,60,0.19), transparent 62%),
+      radial-gradient(ellipse 680px 620px at 106% 100%, rgba(242,163,61,0.18), transparent 62%);
+    background-size:22px 22px, auto, auto, auto, auto, auto, auto;
   }
 
   /* ---------- PROJECT ACCENT TREATMENTS ---------- */
