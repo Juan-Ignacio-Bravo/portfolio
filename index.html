@@ -69,13 +69,15 @@
      after the first screen. */
   body{
     background:
-      linear-gradient(155deg, rgba(255,91,51,0.16) 0%, rgba(255,91,51,0) 30%),
-      linear-gradient(155deg, rgba(47,143,130,0) 68%, rgba(47,143,130,0.18) 100%),
-      linear-gradient(20deg, rgba(232,255,61,0.11) 0%, rgba(232,255,61,0) 24%),
-      linear-gradient(200deg, rgba(214,39,60,0.11) 0%, rgba(214,39,60,0) 24%),
+      linear-gradient(155deg, rgba(255,91,51,0.24) 0%, rgba(255,91,51,0) 32%),
+      linear-gradient(155deg, rgba(47,143,130,0) 65%, rgba(47,143,130,0.26) 100%),
+      linear-gradient(20deg, rgba(232,255,61,0.17) 0%, rgba(232,255,61,0) 26%),
+      linear-gradient(200deg, rgba(214,39,60,0.17) 0%, rgba(214,39,60,0) 26%),
+      linear-gradient(110deg, rgba(79,184,255,0.16) 0%, rgba(79,184,255,0) 22%),
+      linear-gradient(295deg, rgba(242,163,61,0.16) 0%, rgba(242,163,61,0) 22%),
       var(--paper);
     background-repeat:repeat-y;
-    background-size:100% 1400px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 100%;
+    background-size:100% 1400px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 100%;
     color:var(--ink);
     font-family:var(--body);
     line-height:1.55;
@@ -89,14 +91,14 @@
     content:'';
     position:absolute; inset:0; z-index:-1; pointer-events:none;
     background:
-      radial-gradient(ellipse 680px 620px at 55% 17%, rgba(232,255,61,0.07), transparent 65%),
-      radial-gradient(ellipse 700px 640px at 32% 40%, rgba(255,91,51,0.07), transparent 65%),
-      radial-gradient(ellipse 680px 620px at 62% 62%, rgba(47,143,130,0.07), transparent 65%),
-      radial-gradient(ellipse 600px 720px at 0% 70%, rgba(214,39,60,0.11), transparent 62%),
-      radial-gradient(ellipse 580px 700px at 100% 78%, rgba(232,255,61,0.10), transparent 62%),
-      radial-gradient(ellipse 700px 640px at 40% 86%, rgba(214,39,60,0.09), transparent 65%),
-      radial-gradient(ellipse 620px 780px at 3% 94%, rgba(255,91,51,0.13), transparent 62%),
-      radial-gradient(ellipse 560px 700px at 97% 100%, rgba(47,143,130,0.14), transparent 62%);
+      radial-gradient(ellipse 680px 620px at 55% 17%, rgba(232,255,61,0.11), transparent 65%),
+      radial-gradient(ellipse 700px 640px at 32% 40%, rgba(255,91,51,0.11), transparent 65%),
+      radial-gradient(ellipse 680px 620px at 62% 62%, rgba(47,143,130,0.11), transparent 65%),
+      radial-gradient(ellipse 600px 720px at 0% 70%, rgba(214,39,60,0.16), transparent 62%),
+      radial-gradient(ellipse 580px 700px at 100% 78%, rgba(79,184,255,0.14), transparent 62%),
+      radial-gradient(ellipse 700px 640px at 40% 86%, rgba(242,163,61,0.14), transparent 65%),
+      radial-gradient(ellipse 620px 780px at 3% 94%, rgba(255,91,51,0.18), transparent 62%),
+      radial-gradient(ellipse 560px 700px at 97% 100%, rgba(47,143,130,0.19), transparent 62%);
   }
 
   a{color:inherit;}
@@ -1074,7 +1076,7 @@
   }
   .acc-toggle:hover{ opacity:1; }
   .acc-toggle:active{ transform:scale(0.98); }
-  .acc-inner{ padding-top:20px; }
+  .acc-inner{ padding-top:28px; }
   .acc-chevron{ margin-left:auto; font-size:12px; transition:transform .3s ease; }
   .acc-toggle[aria-expanded="true"] .acc-chevron{ transform:rotate(180deg); }
   html:not(.js-acc) .acc-toggle{ display:none; }
