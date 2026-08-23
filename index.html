@@ -36,7 +36,8 @@
   ============================================ */
   :root{
     --ink:#17181C;
-    --paper:#F6F3EC;
+    --paper:#F1E7D3;
+    --card:#FFFCF5;
     --panel:#1C1B18;
     --panel-ink:#EFEAE0;
     --line:#D9D2C2;
@@ -102,7 +103,7 @@
   /* ---------- NAV ---------- */
   header.site-nav{
     position:sticky; top:0; z-index:50;
-    background:rgba(246,243,236,0.92);
+    background:rgba(241,231,211,0.92);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
   }
@@ -271,12 +272,12 @@
   .chip{
     font-family:var(--mono); font-size:12.5px; padding:7px 12px;
     border:1px solid var(--line); border-radius:2px; color:var(--ink);
-    background:#fff;
+    background:var(--card);
   }
 
   /* projects */
   .projects-list{display:flex; flex-direction:column; gap:44px;}
-  .project-block{border:1px solid var(--line); background:#fff; padding:34px;}
+  .project-block{border:1px solid var(--line); background:var(--card); padding:34px;}
   .project-top{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:22px; padding-bottom:18px; border-bottom:1px solid var(--line);}
   .project-title{font-family:var(--display); font-weight:800; text-transform:uppercase; font-size:clamp(22px,3vw,30px); letter-spacing:0.005em;}
   .project-meta{font-family:var(--mono); font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;}
@@ -284,7 +285,7 @@
   .subhead-mini{font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); margin-bottom:12px;}
 
   .metric-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:28px;}
-  .metric-tile{background:#fff; padding:18px;}
+  .metric-tile{background:var(--card); padding:18px;}
   .metric-value{font-family:var(--display); font-weight:800; font-size:25px;}
   .metric-label{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-top:5px;}
   .metric-delta{font-family:var(--mono); font-size:11px; color:var(--flow); margin-top:4px; font-weight:600;}
@@ -378,7 +379,7 @@
 
   .car-btn{
     position:absolute; top:50%; transform:translateY(-50%); z-index:30;
-    width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:#fff;
+    width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:var(--card);
     font-family:var(--mono); font-size:15px; cursor:pointer;
     display:flex; align-items:center; justify-content:center; color:var(--ink);
     box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:border-color .15s, color .15s;
@@ -395,7 +396,7 @@
 
   .media-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:28px;}
   @media (max-width:640px){ .media-grid{grid-template-columns:1fr;} }
-  .media-cell{border:1px solid var(--line); background:#fff; overflow:hidden;}
+  .media-cell{border:1px solid var(--line); background:var(--card); overflow:hidden;}
   .media-embed{position:relative; aspect-ratio:4/3; background:#000;}
   .media-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
   .media-cap{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.03em; color:var(--muted); padding:10px 12px;}
@@ -498,7 +499,7 @@
 
   /* soft ambient color washes + fine dot-grid texture so the paper-colored
      sections never read as flat empty paper behind the content blocks */
-  .sec-alt-bg{background-color:#F0ECE1;}
+  .sec-alt-bg{background-color:#EADCC3;}
   #about, #experience, #skills, #testimonials, .proj-section{
     background-image:
       radial-gradient(circle, rgba(23,24,28,0.09) 1.6px, transparent 1.6px),
@@ -511,11 +512,16 @@
   /* ---------- PROJECT ACCENT TREATMENTS ---------- */
   .project-block{position:relative; z-index:0; transition:transform .7s ease, box-shadow .25s ease, opacity .7s ease, border-color .2s ease; overflow:hidden;}
   .project-block:hover{border-color:var(--tally);}
+  /* sits in normal flow as the last thing in the expandable panel, not
+     position:absolute — a fixed bottom-offset watermark looked fine against
+     short content but painted on top of tall last-elements like the reel
+     pair or story carousel on other projects, since it doesn't reserve any
+     space of its own */
   .proj-watermark{
-    position:absolute; bottom:14px; right:14px; width:52px; height:auto; opacity:1;
-    pointer-events:none; z-index:1; filter:none;
+    display:block; margin:28px 0 0 auto; width:52px; height:auto; opacity:1;
+    pointer-events:none; filter:none;
   }
-  .project-block.cs .proj-watermark{ width:96px; bottom:18px; }
+  .project-block.cs .proj-watermark{ width:96px; }
 
   .project-block.gs{
     background:#241209; border-color:#4a2a14; color:#F6E9D8;
@@ -907,7 +913,7 @@
   /* ---------- award badge (About) ---------- */
   .award-badge{
     display:flex; align-items:center; gap:16px; margin-top:22px; padding:14px;
-    background:#fff; border:2px solid var(--ink); border-radius:var(--radius-md);
+    background:var(--card); border:2px solid var(--ink); border-radius:var(--radius-md);
     box-shadow:4px 4px 0 var(--tally); max-width:420px;
   }
   .award-badge img{ width:60px; height:60px; object-fit:cover; border-radius:var(--radius-sm); flex:0 0 auto; }
@@ -960,7 +966,7 @@
   .testimonial-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-bottom:44px; }
   @media (max-width:760px){ .testimonial-grid{ grid-template-columns:1fr; } }
   .testimonial-card{
-    background:#fff; border:2px solid var(--ink); border-radius:var(--radius-lg);
+    background:var(--card); border:2px solid var(--ink); border-radius:var(--radius-lg);
     padding:28px; box-shadow:6px 6px 0 var(--flow);
   }
   .testimonial-quote{ font-size:15.5px; line-height:1.6; color:var(--ink); margin-bottom:18px; }
@@ -981,7 +987,7 @@
   .review-count{ font-family:var(--mono); font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.03em; }
   .review-track{ padding-bottom:14px; }
   .review-card{
-    background:#fff; border:2px solid var(--ink); border-radius:var(--radius-md);
+    background:var(--card); border:2px solid var(--ink); border-radius:var(--radius-md);
     padding:18px; box-shadow:3px 3px 0 var(--tally);
     flex:0 0 auto; width:260px;
   }
@@ -1064,6 +1070,7 @@
   }
   .acc-toggle:hover{ opacity:1; }
   .acc-toggle:active{ transform:scale(0.98); }
+  .acc-inner{ padding-top:20px; }
   .acc-chevron{ margin-left:auto; font-size:12px; transition:transform .3s ease; }
   .acc-toggle[aria-expanded="true"] .acc-chevron{ transform:rotate(180deg); }
   html:not(.js-acc) .acc-toggle{ display:none; }
