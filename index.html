@@ -17,6 +17,10 @@
   document.documentElement.classList.add(
     (window.gsap && window.ScrollTrigger && window.Lenis) ? 'has-gsap' : 'no-gsap'
   );
+  /* set as early as possible so collapsible sections start collapsed with
+     no flash of expanded content; a no-JS visitor never gets this class,
+     so the .acc-panel display:block fallback keeps everything visible */
+  document.documentElement.classList.add('js-acc');
 </script>
 <style>
   /* ============ TOKEN SYSTEM ============
@@ -1029,6 +1033,34 @@
   .back-to-top.visible{ opacity:1; pointer-events:auto; transform:translateY(0); }
   .back-to-top:hover{ box-shadow:5px 5px 0 var(--tally); transform:translateY(-2px); }
   @media (max-width:640px){ .back-to-top{ width:40px; height:40px; bottom:16px; right:16px; } }
+
+  /* ---------- collapsible sections (projects + experience) ----------
+     max-height is measured and kept in sync with a ResizeObserver (see the
+     accordion script) so the animation still tracks correctly even when
+     content inside (carousels, lazy-loaded Instagram embeds) changes size
+     after opening. Gated behind html.js-acc, set as early as possible in
+     <head>, so a no-JS visitor always gets the fully expanded, un-collapsed
+     page rather than content permanently stuck hidden. */
+  .acc-panel{ overflow:visible; max-height:none; }
+  html.js-acc .acc-panel{
+    overflow:hidden; max-height:0;
+    transition:max-height .45s cubic-bezier(.22,.9,.32,1);
+  }
+
+  .acc-toggle{
+    display:flex; align-items:center; gap:10px; width:100%; margin-top:18px;
+    font-family:var(--mono); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;
+    background:none; border:2px solid currentColor; border-radius:var(--radius-pill);
+    padding:10px 18px; cursor:pointer; color:inherit; opacity:0.85;
+    transition:opacity .15s ease, transform .15s ease;
+  }
+  .acc-toggle:hover{ opacity:1; }
+  .acc-toggle:active{ transform:scale(0.98); }
+  .acc-chevron{ margin-left:auto; font-size:12px; transition:transform .3s ease; }
+  .acc-toggle[aria-expanded="true"] .acc-chevron{ transform:rotate(180deg); }
+  html:not(.js-acc) .acc-toggle{ display:none; }
+
+  .t-item .acc-toggle{ margin-top:12px; }
 </style>
 </head>
 <body>
@@ -1111,7 +1143,6 @@
     <div class="projects-list">
 
       <div class="project-block cs reveal-left">
-        <img class="proj-watermark" src="assets/cs-logo.png" alt="" aria-hidden="true">
         <div class="project-top">
           <div>
             <div class="project-title">Coach Stolen</div>
@@ -1120,6 +1151,11 @@
           <div class="project-meta">6+ yrs RLCS · 2 yrs CRL</div>
         </div>
         <p class="project-desc">Independent Rocket League coaching under my own name and brand, working with players at the RLCS and CRL level on mental performance, flow state, and the routines that hold up under competitive pressure. Sessions are booked through Metafy, and match history lives on Liquipedia.</p>
+
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-cs" data-acc-group="projects" data-closed-text="View full project" data-open-text="Hide full project">
+          <span class="acc-toggle-label">View full project</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-cs"><div class="acc-inner">
 
         <div class="subhead-mini">By the numbers</div>
         <div class="stats-grid reveal-stagger">
@@ -1215,10 +1251,12 @@
           <a class="content-tile" href="https://metafy.gg/@stolen/sessions" target="_blank" rel="noopener"><div class="cv">Metafy</div><div class="cd">Online Store</div></a>
           <a class="content-tile" href="https://liquipedia.net/rocketleague/Stolen" target="_blank" rel="noopener"><div class="cv">Liquipedia</div><div class="cd">Esports Profile</div></a>
         </div>
+
+        <img class="proj-watermark" src="assets/cs-logo.png" alt="" aria-hidden="true">
+        </div></div>
       </div>
 
       <div class="project-block esp reveal-right">
-        <img class="proj-watermark" src="assets/esp-logo.png" alt="" aria-hidden="true">
         <div class="project-top">
           <div>
             <div class="project-title">Esportian</div>
@@ -1227,6 +1265,11 @@
           <div class="project-meta">Jan 2026 – Jun 2026</div>
         </div>
         <p class="project-desc">Led Esportian's full rebrand from concept through launch: new brand guidelines, a redesigned visual identity, and the promotional content behind it, including the "Live Talk" interview series and paid ad creative.</p>
+
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-esp" data-acc-group="projects" data-closed-text="View full project" data-open-text="Hide full project">
+          <span class="acc-toggle-label">View full project</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-esp"><div class="acc-inner">
 
         <div class="subhead-mini">Design work</div>
         <div class="thumb-grid">
@@ -1280,10 +1323,12 @@
           <div class="reel-card"><video src="assets/reel-10.mp4" controls preload="metadata" playsinline></video></div>
           <div class="instagram-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWE7V7XCILp/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DWE7V7XCILp/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
         </div>
+
+        <img class="proj-watermark" src="assets/esp-logo.png" alt="" aria-hidden="true">
+        </div></div>
       </div>
 
       <div class="project-block gs reveal-left">
-        <img class="proj-watermark" src="assets/gs-logo.png" alt="" aria-hidden="true">
         <div class="project-top">
           <div>
             <div class="project-title">Gangnam Spice</div>
@@ -1292,6 +1337,11 @@
           <div class="project-meta">Internship · Dec 30 – Mar 29</div>
         </div>
         <p class="project-desc">Owned Instagram end to end for a local restaurant brand: scripting, filmmaking, editing, and posting across 30+ reels plus stories and posts. The goal was to reach the brand's ideal customer, within a 5-mile radius and ages 25-44, and a single reel from a consistent posting rhythm broke out to 178K views along the way.</p>
+
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-gs" data-acc-group="projects" data-closed-text="View full project" data-open-text="Hide full project">
+          <span class="acc-toggle-label">View full project</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-gs"><div class="acc-inner">
 
         <div class="subhead-mini">From the launch event</div>
         <div class="feat-carousel" data-highlight="left">
@@ -1371,6 +1421,9 @@
           </div>
           <button class="car-btn next" type="button" aria-label="Scroll right">›</button>
         </div>
+
+        <img class="proj-watermark" src="assets/gs-logo.png" alt="" aria-hidden="true">
+        </div></div>
       </div>
 
     </div>
@@ -1423,46 +1476,68 @@
     <div class="timeline">
 
       <div class="t-item coach reveal-left">
-        <div class="t-scatter t-scatter-solo">
-          <img src="assets/about-ra-speech.jpg" alt="Speaking at Fisher College's Public Speaking Contest" loading="lazy">
-        </div>
         <div class="t-date">Aug 2025 – Jun 2026</div>
         <div class="t-role">Resident Assistant</div>
         <div class="t-org">Fisher College, Boston, MA</div>
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-exp-1" data-acc-group="experience">
+          <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-exp-1"><div class="acc-inner">
+        <div class="t-scatter t-scatter-solo">
+          <img src="assets/about-ra-speech.jpg" alt="Speaking at Fisher College's Public Speaking Contest" loading="lazy">
+        </div>
         <ul>
           <li>Support and lead a residential student community, fostering a safe, inclusive living environment.</li>
           <li>Coordinate weekly arrivals and departures of international students.</li>
           <li>Resolve conflicts and enforce policy compliance through clear communication and de-escalation.</li>
         </ul>
+        </div></div>
       </div>
 
       <div class="t-item create reveal-right">
         <div class="t-date">Jan 2026 – Jun 2026</div>
         <div class="t-role">Marketing Manager</div>
         <div class="t-org">Esportian, Remote</div>
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-exp-2" data-acc-group="experience">
+          <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-exp-2"><div class="acc-inner">
         <ul>
           <li>Led the marketing team and onboarded new employees and interns, overseeing day-to-day operations and direction.</li>
           <li>Produced content for diverse digital platforms aligned with brand goals.</li>
           <li>Managed external partnerships and developed a full rebranding strategy from concept through launch.</li>
         </ul>
+        </div></div>
       </div>
 
       <div class="t-item create reveal-left">
+        <div class="t-date">Jan 2026 – May 2026</div>
+        <div class="t-role">Social Media Manager Intern</div>
+        <div class="t-org">Gangnam Spice, Boston, MA</div>
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-exp-3" data-acc-group="experience">
+          <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-exp-3"><div class="acc-inner">
         <div class="t-scatter">
           <img src="assets/about-gs-extra-13.jpg" alt="Gangnam Spice storefront" loading="lazy">
           <img src="assets/about-gs-extra-1.jpg" alt="Frying wings in the kitchen" loading="lazy">
         </div>
-        <div class="t-date">Jan 2026 – May 2026</div>
-        <div class="t-role">Social Media Manager Intern</div>
-        <div class="t-org">Gangnam Spice, Boston, MA</div>
         <ul>
           <li>Scripted, filmed, edited, and posted 30+ reels plus stories and posts, owning content end to end.</li>
           <li>Conducted market research to target the brand's ideal customer, within a 5-mile radius and ages 25-44.</li>
           <li>Grew Instagram presence over 90 days: +204% profile activity, +98.4% followers, 46,858 accounts reached.</li>
         </ul>
+        </div></div>
       </div>
 
       <div class="t-item coach reveal-right">
+        <div class="t-date">Sep 2021 – Present</div>
+        <div class="t-role">Esports Coach</div>
+        <div class="t-org">Rocket League (Independent), Remote</div>
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-exp-4" data-acc-group="experience">
+          <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-exp-4"><div class="acc-inner">
         <div class="t-scatter">
           <img src="assets/about-coach-9.jpg" alt="Coaching hand signals mid-match with Royales" loading="lazy">
           <img src="assets/about-coach-13.jpg" alt="With the Leviatán livery car, Argentina" loading="lazy">
@@ -1484,20 +1559,22 @@
           <img class="scatter-extra" src="assets/about-coach-17.jpg" alt="Sideline moment at a tournament" loading="lazy">
           <img class="scatter-extra" src="assets/about-coach-18.jpg" alt="Sideline moment at a tournament" loading="lazy">
         </div>
-        <div class="t-date">Sep 2021 – Present</div>
-        <div class="t-role">Esports Coach</div>
-        <div class="t-org">Rocket League (Independent), Remote</div>
         <ul>
           <li>Coach professional players in high-pressure competitive environments, RLCS for 6+ years, CRL for 2 years.</li>
           <li>Focus on mental performance, flow state, and mindfulness to improve performance under pressure.</li>
           <li>Design individualized routines, habits, and nutrition plans; manage players' and clubs' public image.</li>
         </ul>
+        </div></div>
       </div>
 
       <div class="t-item create reveal-left">
         <div class="t-date">Jan 2025 – Dec 2025</div>
         <div class="t-role">Broadcast Team Member</div>
         <div class="t-org">Fisher College, Boston, MA</div>
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-exp-5" data-acc-group="experience">
+          <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-exp-5"><div class="acc-inner">
         <ul>
           <li>Directed and narrated live esports broadcasts.</li>
           <li>Operated OBS at an advanced level for live production and stream management.</li>
@@ -1506,41 +1583,56 @@
           <video src="assets/about-broadcast-1.mp4" controls preload="metadata" playsinline></video>
           <video src="assets/about-broadcast-2.mp4" controls preload="metadata" playsinline></video>
         </div>
+        </div></div>
       </div>
 
       <div class="t-item coach reveal-right">
+        <div class="t-date">Aug 2025 – Dec 2025</div>
+        <div class="t-role">Youth Soccer Coach (Volunteer)</div>
+        <div class="t-org">Challengers, Portland, ME</div>
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-exp-6" data-acc-group="experience">
+          <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-exp-6"><div class="acc-inner">
         <div class="t-scatter">
           <img src="assets/about-soccer.jpg" alt="Running a youth soccer drill" loading="lazy">
           <video src="assets/about-soccer-1.mp4" controls preload="metadata" playsinline></video>
         </div>
-        <div class="t-date">Aug 2025 – Dec 2025</div>
-        <div class="t-role">Youth Soccer Coach (Volunteer)</div>
-        <div class="t-org">Challengers, Portland, ME</div>
         <ul>
           <li>Coordinated training sessions for groups of 10–20 children ages 2–8.</li>
           <li>Designed creative, age-appropriate activities to keep sessions engaging.</li>
         </ul>
+        </div></div>
       </div>
 
       <div class="t-item create reveal-left">
+        <div class="t-date">May 2020 – Dec 2025</div>
+        <div class="t-role">Content Creator</div>
+        <div class="t-org">Self-Employed, Remote</div>
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-exp-7" data-acc-group="experience">
+          <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-exp-7"><div class="acc-inner">
         <div class="t-scatter">
           <img src="assets/about-creator-1.jpg" alt="Shooting in DUMBO, Brooklyn" loading="lazy">
           <img src="assets/about-creator-4.jpg" alt="Shooting on the Brooklyn Bridge" loading="lazy">
         </div>
-        <div class="t-date">May 2020 – Dec 2025</div>
-        <div class="t-role">Content Creator</div>
-        <div class="t-org">Self-Employed, Remote</div>
         <ul>
           <li>Built brand identity and storytelling scripts across YouTube, Twitch, and Instagram.</li>
           <li>250,000+ views (Spanish YouTube), 500,000+ views (English YouTube), 25M+ combined views across 10+ Instagram videos.</li>
           <li>Grew Twitch to 32,000+ followers; managed an editing team and project finances; generated $100,000+ revenue.</li>
         </ul>
+        </div></div>
       </div>
 
       <div class="t-item coach reveal-right">
         <div class="t-date">Jan 2023 – Jul 2024</div>
         <div class="t-role">Human Resources &amp; Content Design</div>
         <div class="t-org">Barbertendence, Bahía Blanca, Argentina</div>
+        <button class="acc-toggle" type="button" aria-expanded="false" aria-controls="panel-exp-8" data-acc-group="experience">
+          <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="acc-panel" id="panel-exp-8"><div class="acc-inner">
         <ul>
           <li>Led hiring, onboarding, and ongoing management of employees.</li>
           <li>Mentored new team members and strengthened team cohesion.</li>
@@ -1558,6 +1650,7 @@
           </div>
           <button class="car-btn next" type="button" aria-label="Scroll right">›</button>
         </div>
+        </div></div>
       </div>
 
     </div>
@@ -1774,6 +1867,52 @@
     if(next) next.addEventListener('click', function(){ track.scrollBy({left:step(), behavior:'smooth'}); });
   });
 
+  // Collapsible sections: each project card and experience item starts
+  // collapsed (see the early html.js-acc class in <head>) and expands on
+  // click. Projects allow several open at once so visitors can compare;
+  // Experience is a strict accordion (opening one closes the rest) since
+  // it's a long list and staying single-open keeps it from re-growing back
+  // to full length.
+  (function(){
+    var entries = [];
+    document.querySelectorAll('.acc-toggle').forEach(function(toggle){
+      var panel = document.getElementById(toggle.getAttribute('aria-controls'));
+      if(!panel) return;
+      var label = toggle.querySelector('.acc-toggle-label');
+      var openText = toggle.getAttribute('data-open-text') || 'Hide details';
+      var closedText = toggle.getAttribute('data-closed-text') || 'View details';
+      var entry = { toggle: toggle, group: toggle.getAttribute('data-acc-group') };
+      function setOpen(open){
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        panel.classList.toggle('open', open);
+        panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0px';
+        if(label) label.textContent = open ? openText : closedText;
+      }
+      entry.setOpen = setOpen;
+      entries.push(entry);
+      setOpen(false);
+      toggle.addEventListener('click', function(){
+        var opening = toggle.getAttribute('aria-expanded') !== 'true';
+        if(opening && entry.group === 'experience'){
+          entries.forEach(function(e){ if(e !== entry && e.group === 'experience') e.setOpen(false); });
+        }
+        setOpen(opening);
+      });
+      // keep max-height in sync while open, since carousels and lazy-loaded
+      // Instagram embeds inside the panel change size after it's opened
+      // observe the inner content wrapper, not the panel itself: observing
+      // the same element whose height we're actively animating would create
+      // a resize->mutate->resize feedback loop
+      var innerEl = panel.querySelector('.acc-inner') || panel;
+      if('ResizeObserver' in window){
+        var ro = new ResizeObserver(function(){
+          if(panel.classList.contains('open')) panel.style.maxHeight = panel.scrollHeight + 'px';
+        });
+        ro.observe(innerEl);
+      }
+    });
+  })();
+
   // Lazy embed facades: YouTube and Google Drive iframes are heavy (each one
   // boots its own player/JS bundle), and this page embeds dozens of them.
   // Loading them all up front is the single biggest cause of scroll jank on
@@ -1797,8 +1936,20 @@
       } else {
         f.classList.add('is-drive');
         if(driveMatch){
+          // Drive's public thumbnail endpoint is flaky under load (some
+          // requests 403/empty out of a batch fired on page load) — retry
+          // once after a short delay, and if it still fails just drop the
+          // image so the facade falls back to its plain play-button look
+          // instead of a broken-image icon.
           var dimg = document.createElement('img');
-          dimg.src = 'https://drive.google.com/thumbnail?id=' + driveMatch[1] + '&sz=w1000';
+          var driveThumbUrl = 'https://drive.google.com/thumbnail?id=' + driveMatch[1] + '&sz=w1000';
+          var retried = false;
+          dimg.addEventListener('error', function(){
+            if(retried){ dimg.remove(); return; }
+            retried = true;
+            setTimeout(function(){ dimg.src = driveThumbUrl + '&retry=1'; }, 1200 + Math.random() * 1200);
+          });
+          dimg.src = driveThumbUrl;
           dimg.alt = '';
           dimg.loading = 'lazy';
           f.insertBefore(dimg, f.firstChild);
