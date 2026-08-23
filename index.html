@@ -252,13 +252,21 @@
   .swatch.coach{background:var(--flow);}
 
   .timeline{border-left:1px solid var(--line); margin-left:6px;}
-  .t-item{position:relative; padding:16px 20px 32px 40px; margin-bottom:12px; border-radius:var(--radius-md);}
+  /* each entry is its own card — off-white surface, 2px palette border
+     (orange/create vs teal/coach, matching the legend above), hard-shadow
+     to match the rest of the site's card language — rather than a
+     translucent color wash sitting directly on the section's own already-
+     colored background, which read as too intense stacked together */
+  .t-item{
+    position:relative; padding:20px 24px 26px; margin:0 0 20px 14px;
+    border-radius:var(--radius-lg); background:#FFFDF8;
+    border:2px solid var(--tally); box-shadow:4px 4px 0 var(--tally);
+  }
+  .t-item.coach{ border-color:var(--flow); box-shadow:4px 4px 0 var(--flow); }
   .t-item::after{content:''; display:block; clear:both;}
-  .t-item:last-child{padding-bottom:20px; margin-bottom:0;}
-  .t-item:nth-child(odd){ background:rgba(255,91,51,0.05); }
-  .t-item:nth-child(even){ background:rgba(47,143,130,0.055); }
+  .t-item:last-child{margin-bottom:0;}
   .t-item::before{
-    content:''; position:absolute; left:-6px; top:20px;
+    content:''; position:absolute; left:-20px; top:24px;
     width:11px; height:11px; border-radius:50%;
     background:var(--paper); border:2px solid var(--tally);
   }
