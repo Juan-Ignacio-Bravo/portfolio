@@ -297,6 +297,36 @@
   .embed-frame{position:relative; width:100%; padding-top:56.25%; background:#000; overflow:hidden; border:1px solid var(--line);}
   .embed-frame iframe, .embed-frame video{position:absolute; top:0; left:0; width:100%; height:100%; border:0; object-fit:contain; background:#000;}
 
+  /* ---------- lazy embed facades: click-to-load placeholders for YouTube /
+     Google Drive iframes, so heavy third-party players never load until the
+     visitor actually wants them (big win for scroll performance) ---------- */
+  .embed-facade{
+    position:absolute; inset:0; width:100%; height:100%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    background:#000; overflow:hidden;
+  }
+  .embed-facade img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.72; }
+  .embed-facade .embed-play{
+    position:relative; z-index:2; width:50px; height:50px; border-radius:50%; flex:0 0 auto;
+    background:rgba(255,91,51,0.92); box-shadow:0 4px 14px rgba(0,0,0,0.4);
+    transition:transform .2s ease, background .2s ease;
+  }
+  .embed-facade .embed-play::before{
+    content:''; position:absolute; top:50%; left:54%; transform:translate(-50%,-50%);
+    border-style:solid; border-width:8px 0 8px 13px; border-color:transparent transparent transparent #fff;
+  }
+  .embed-facade:hover .embed-play, .embed-facade:focus-visible .embed-play{ transform:scale(1.08); background:var(--tally); }
+  .embed-facade .embed-label{
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:0.03em;
+    color:#fff; background:linear-gradient(0deg, rgba(0,0,0,0.78), transparent); padding:20px 10px 8px;
+    text-align:center; pointer-events:none;
+  }
+  .embed-facade.is-youtube .embed-label{ display:none; }
+  .embed-facade.is-drive .embed-play{ background:rgba(47,143,130,0.92); }
+  .embed-facade.is-drive:hover .embed-play, .embed-facade.is-drive:focus-visible .embed-play{ background:var(--flow); }
+  .embed-facade:focus-visible{ outline:2px solid var(--tally); outline-offset:-2px; }
+
   /* carousels */
   .carousel{position:relative; margin-bottom:28px;}
   .carousel-track{
@@ -748,7 +778,7 @@
   .cursor-ring span{ opacity:0; transition:opacity .15s ease; }
   .cursor-ring.on-dark{ border-color:var(--panel-ink); }
   .cursor-ring.on-dark.hover{ background:var(--panel-ink); color:var(--panel); }
-  @media (pointer:fine){ html.cursor-ready, html.cursor-ready a, html.cursor-ready button, html.cursor-ready .car-btn{ cursor:none; } }
+  @media (pointer:fine){ html.cursor-ready, html.cursor-ready a, html.cursor-ready button, html.cursor-ready .car-btn, html.cursor-ready .embed-facade{ cursor:none; } }
   @media (pointer:coarse), (prefers-reduced-motion:reduce){ .cursor-dot, .cursor-ring{ display:none !important; } }
 
   /* ---------- oversized section numerals ---------- */
@@ -1144,12 +1174,12 @@
         <div class="carousel">
           <button class="car-btn prev" type="button" aria-label="Scroll left">‹</button>
           <div class="carousel-track">
-            <div class="video-card"><iframe src="https://www.youtube.com/embed/VKICHHFeQGA" title="Coach Stolen highlight" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-card"><iframe src="https://www.youtube.com/embed/zKiuQwDVasY" title="Coach Stolen highlight" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-card"><iframe src="https://www.youtube.com/embed/XzwNjwZsbew" title="Coach Stolen highlight" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-card"><iframe src="https://www.youtube.com/embed/VXGMrMaQqzg" title="Coach Stolen highlight" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-card"><iframe src="https://www.youtube.com/embed/U36AQ0bIOto" title="Coach Stolen highlight, DreamHack Atlanta" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-card"><iframe src="https://www.youtube.com/embed/iC1cXc97fzM" title="Coach Stolen highlight" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-card"><div class="embed-facade" data-embed-src="https://www.youtube.com/embed/VKICHHFeQGA" data-embed-title="Coach Stolen highlight" data-embed-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" data-embed-fullscreen="1" role="button" tabindex="0" aria-label="Play: Coach Stolen highlight"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Coach Stolen highlight</span></div></div>
+            <div class="video-card"><div class="embed-facade" data-embed-src="https://www.youtube.com/embed/zKiuQwDVasY" data-embed-title="Coach Stolen highlight" data-embed-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" data-embed-fullscreen="1" role="button" tabindex="0" aria-label="Play: Coach Stolen highlight"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Coach Stolen highlight</span></div></div>
+            <div class="video-card"><div class="embed-facade" data-embed-src="https://www.youtube.com/embed/XzwNjwZsbew" data-embed-title="Coach Stolen highlight" data-embed-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" data-embed-fullscreen="1" role="button" tabindex="0" aria-label="Play: Coach Stolen highlight"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Coach Stolen highlight</span></div></div>
+            <div class="video-card"><div class="embed-facade" data-embed-src="https://www.youtube.com/embed/VXGMrMaQqzg" data-embed-title="Coach Stolen highlight" data-embed-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" data-embed-fullscreen="1" role="button" tabindex="0" aria-label="Play: Coach Stolen highlight"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Coach Stolen highlight</span></div></div>
+            <div class="video-card"><div class="embed-facade" data-embed-src="https://www.youtube.com/embed/U36AQ0bIOto" data-embed-title="Coach Stolen highlight, DreamHack Atlanta" data-embed-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" data-embed-fullscreen="1" role="button" tabindex="0" aria-label="Play: Coach Stolen highlight, DreamHack Atlanta"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Coach Stolen highlight, DreamHack Atlanta</span></div></div>
+            <div class="video-card"><div class="embed-facade" data-embed-src="https://www.youtube.com/embed/iC1cXc97fzM" data-embed-title="Coach Stolen highlight" data-embed-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" data-embed-fullscreen="1" role="button" tabindex="0" aria-label="Play: Coach Stolen highlight"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Coach Stolen highlight</span></div></div>
           </div>
           <button class="car-btn next" type="button" aria-label="Scroll right">›</button>
         </div>
@@ -1203,19 +1233,19 @@
         <div class="subhead-mini">Rebrand overview</div>
         <div class="media-grid esp-media">
           <div class="media-cell">
-            <div class="media-embed"><iframe src="https://drive.google.com/file/d/1jXE0l5eo-8x-bGMUYdhT9CGtemiPesEi/preview" title="Esportian brand guidelines" loading="lazy"></iframe></div>
+            <div class="media-embed"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1jXE0l5eo-8x-bGMUYdhT9CGtemiPesEi/preview" data-embed-title="Esportian brand guidelines" role="button" tabindex="0" aria-label="Play: Esportian brand guidelines"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian brand guidelines</span></div></div>
             <div class="media-cap">Brand guidelines</div>
           </div>
           <div class="media-cell">
-            <div class="media-embed"><iframe src="https://drive.google.com/file/d/1e6hLQm7lXTGgSrXOJvj7NC9c4hdknpX_/preview" title="Esportian rebrand video" allow="autoplay" loading="lazy"></iframe></div>
+            <div class="media-embed"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1e6hLQm7lXTGgSrXOJvj7NC9c4hdknpX_/preview" data-embed-title="Esportian rebrand video" data-embed-allow="autoplay" role="button" tabindex="0" aria-label="Play: Esportian rebrand video"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian rebrand video</span></div></div>
             <div class="media-cap">Rebrand video</div>
           </div>
           <div class="media-cell">
-            <div class="media-embed"><iframe src="https://www.youtube.com/embed/gkoV2poxTzY?start=3" title="Esportian launch video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+            <div class="media-embed"><div class="embed-facade" data-embed-src="https://www.youtube.com/embed/gkoV2poxTzY?start=3" data-embed-title="Esportian launch video" data-embed-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" data-embed-fullscreen="1" role="button" tabindex="0" aria-label="Play: Esportian launch video"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian launch video</span></div></div>
             <div class="media-cap">Launch video</div>
           </div>
           <div class="media-cell">
-            <div class="media-embed"><iframe src="https://drive.google.com/file/d/1TF9r79BRGgtaarO5rN3xLsxOFSS6Fv3G/preview" title="Esportian Live Talk graphic, design by Mario Agudello" loading="lazy"></iframe></div>
+            <div class="media-embed"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1TF9r79BRGgtaarO5rN3xLsxOFSS6Fv3G/preview" data-embed-title="Esportian Live Talk graphic, design by Mario Agudello" role="button" tabindex="0" aria-label="Play: Esportian Live Talk graphic, design by Mario Agudello"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian Live Talk graphic, design by Mario Agudello</span></div></div>
             <div class="media-cap">Live Talk design, Mario Agudello</div>
           </div>
         </div>
@@ -1224,13 +1254,13 @@
         <div class="feat-carousel" data-highlight="left" data-ratio="portrait">
           <button class="car-btn prev" type="button" aria-label="Scroll left">‹</button>
           <div class="feat-track">
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1cjboqb2Snp6wf0hf7AJthcPiR4ZK3bd3/preview" title="Esportian carousel slide 1" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1Nl1Xi4RZ9WfGO2eck23V_r0iIY_7_tpn/preview" title="Esportian carousel slide 2" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1dM08WHC-m3u_2is2L7hzkKra0ARbrbDM/preview" title="Esportian carousel slide 3" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1zfA4K2wcoRJnJxocH5pJAh-VyaSRTcBa/preview" title="Esportian carousel slide 4" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1L2g4Lb-m9slSz46XX8AC5Af8DPkvaSK9/preview" title="Esportian carousel slide 5" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1gwzc6gmf8-IRrh0j6WwxFv7ymJ9fKGhr/preview" title="Esportian carousel slide 6" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1-oDTRuuf6Es7JYUotFISw6GcBq04OsCp/preview" title="Esportian carousel slide 7" loading="lazy"></iframe></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1cjboqb2Snp6wf0hf7AJthcPiR4ZK3bd3/preview" data-embed-title="Esportian carousel slide 1" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 1"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 1</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1Nl1Xi4RZ9WfGO2eck23V_r0iIY_7_tpn/preview" data-embed-title="Esportian carousel slide 2" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 2"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 2</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1dM08WHC-m3u_2is2L7hzkKra0ARbrbDM/preview" data-embed-title="Esportian carousel slide 3" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 3"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 3</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1zfA4K2wcoRJnJxocH5pJAh-VyaSRTcBa/preview" data-embed-title="Esportian carousel slide 4" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 4"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 4</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1L2g4Lb-m9slSz46XX8AC5Af8DPkvaSK9/preview" data-embed-title="Esportian carousel slide 5" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 5"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 5</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1gwzc6gmf8-IRrh0j6WwxFv7ymJ9fKGhr/preview" data-embed-title="Esportian carousel slide 6" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 6"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 6</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1-oDTRuuf6Es7JYUotFISw6GcBq04OsCp/preview" data-embed-title="Esportian carousel slide 7" role="button" tabindex="0" aria-label="Play: Esportian carousel slide 7"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Esportian carousel slide 7</span></div></div>
           </div>
           <button class="car-btn next" type="button" aria-label="Scroll right">›</button>
         </div>
@@ -1305,14 +1335,14 @@
         <div class="feat-carousel" data-highlight="middle" data-ratio="vertical">
           <button class="car-btn prev" type="button" aria-label="Scroll left">‹</button>
           <div class="feat-track">
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1om8mHU6ieiUk4UG8a2twgy2W5xS0mZNv/preview" title="Reel #30" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1xI8tGNUwj4vG34rqw8vXyUqYxs856TAW/preview" title="Reel #28" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1_A7loSu9CFZFRs1I1DhCknDgv6vQWGnh/preview" title="Reel #24, behind the scenes" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1Ju3qQnHF8mhavUWX0LOIUpgCUGli9xrP/preview" title="Reel #21, before and after" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1sYJBnFBhI2FBw6CDLibGEGek5nmZAVgh/preview" title="Reel #12, food promo" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1loMe77BbO_yPXeQudZuRgbc8rmRZZiUL/preview" title="Reel #7, Valentine's Day" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1Qu5qNhtPZfEIkcUYMb3t7vMaXZ_T4Si5/preview" title="Paid traffic ad 1" loading="lazy"></iframe></div>
-            <div class="feat-item"><iframe src="https://drive.google.com/file/d/1aXB5zYF2pd_-RTRbd2E1l1Pf-d0bop7J/preview" title="Paid traffic ad, Korean song" loading="lazy"></iframe></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1om8mHU6ieiUk4UG8a2twgy2W5xS0mZNv/preview" data-embed-title="Reel #30" role="button" tabindex="0" aria-label="Play: Reel #30"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Reel #30</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1xI8tGNUwj4vG34rqw8vXyUqYxs856TAW/preview" data-embed-title="Reel #28" role="button" tabindex="0" aria-label="Play: Reel #28"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Reel #28</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1_A7loSu9CFZFRs1I1DhCknDgv6vQWGnh/preview" data-embed-title="Reel #24, behind the scenes" role="button" tabindex="0" aria-label="Play: Reel #24, behind the scenes"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Reel #24, behind the scenes</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1Ju3qQnHF8mhavUWX0LOIUpgCUGli9xrP/preview" data-embed-title="Reel #21, before and after" role="button" tabindex="0" aria-label="Play: Reel #21, before and after"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Reel #21, before and after</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1sYJBnFBhI2FBw6CDLibGEGek5nmZAVgh/preview" data-embed-title="Reel #12, food promo" role="button" tabindex="0" aria-label="Play: Reel #12, food promo"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Reel #12, food promo</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1loMe77BbO_yPXeQudZuRgbc8rmRZZiUL/preview" data-embed-title="Reel #7, Valentine's Day" role="button" tabindex="0" aria-label="Play: Reel #7, Valentine's Day"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Reel #7, Valentine's Day</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1Qu5qNhtPZfEIkcUYMb3t7vMaXZ_T4Si5/preview" data-embed-title="Paid traffic ad 1" role="button" tabindex="0" aria-label="Play: Paid traffic ad 1"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Paid traffic ad 1</span></div></div>
+            <div class="feat-item"><div class="embed-facade" data-embed-src="https://drive.google.com/file/d/1aXB5zYF2pd_-RTRbd2E1l1Pf-d0bop7J/preview" data-embed-title="Paid traffic ad, Korean song" role="button" tabindex="0" aria-label="Play: Paid traffic ad, Korean song"><span class="embed-play" aria-hidden="true"></span><span class="embed-label">Paid traffic ad, Korean song</span></div></div>
           </div>
           <button class="car-btn next" type="button" aria-label="Scroll right">›</button>
         </div>
@@ -1734,6 +1764,84 @@
     if(next) next.addEventListener('click', function(){ track.scrollBy({left:step(), behavior:'smooth'}); });
   });
 
+  // Lazy embed facades: YouTube and Google Drive iframes are heavy (each one
+  // boots its own player/JS bundle), and this page embeds dozens of them.
+  // Loading them all up front is the single biggest cause of scroll jank on
+  // slower devices, so each starts as a lightweight placeholder and only
+  // becomes a real iframe once the visitor clicks (or keyboard-activates) it.
+  (function(){
+    var YT_RE = /youtube\.com\/embed\/([\w-]+)/;
+    var facades = document.querySelectorAll('.embed-facade');
+    facades.forEach(function(f){
+      var src = f.getAttribute('data-embed-src') || '';
+      var ytMatch = src.match(YT_RE);
+      if(ytMatch){
+        f.classList.add('is-youtube');
+        var img = document.createElement('img');
+        img.src = 'https://i.ytimg.com/vi/' + ytMatch[1] + '/hqdefault.jpg';
+        img.alt = '';
+        img.loading = 'lazy';
+        f.insertBefore(img, f.firstChild);
+      } else {
+        f.classList.add('is-drive');
+      }
+    });
+
+    function activate(facade){
+      var src = facade.getAttribute('data-embed-src');
+      if(!src) return;
+      var title = facade.getAttribute('data-embed-title') || '';
+      var allow = facade.getAttribute('data-embed-allow') || '';
+      var fullscreen = facade.hasAttribute('data-embed-fullscreen');
+      if(YT_RE.test(src)) src += (src.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1';
+      var iframe = document.createElement('iframe');
+      iframe.src = src;
+      if(title) iframe.title = title;
+      if(allow) iframe.setAttribute('allow', allow);
+      if(fullscreen) iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      iframe.setAttribute('loading', 'eager');
+      iframe.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:0;';
+      facade.replaceWith(iframe);
+    }
+    document.addEventListener('click', function(e){
+      var facade = e.target.closest('.embed-facade');
+      if(facade) activate(facade);
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key !== 'Enter' && e.key !== ' ') return;
+      var facade = e.target.closest('.embed-facade');
+      if(facade){ e.preventDefault(); activate(facade); }
+    });
+  })();
+
+  // Instagram embeds: don't fetch Instagram's embed SDK (and the 17 heavy
+  // iframes it builds) until an Instagram card is actually about to scroll
+  // into view. Until then each card shows the plain "View on Instagram" link
+  // that's already inside the blockquote markup as a functional fallback.
+  (function(){
+    var cards = document.querySelectorAll('.instagram-card');
+    if(!cards.length || !('IntersectionObserver' in window)) return;
+    var sdkLoaded = false;
+    function loadSdk(){
+      if(sdkLoaded) return;
+      sdkLoaded = true;
+      var s = document.createElement('script');
+      s.src = 'https://www.instagram.com/embed.js';
+      s.async = true;
+      document.body.appendChild(s);
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+        if(sdkLoaded && window.instgrm && window.instgrm.Embeds){ window.instgrm.Embeds.process(); }
+        else{ loadSdk(); }
+      });
+    }, {rootMargin:'600px 0px'});
+    cards.forEach(function(c){ io.observe(c); });
+  })();
+
   // Lightbox: click (or keyboard-activate) a thumbnail to view it enlarged,
   // with arrows to browse the rest of that grid's images. Fully keyboard
   // operable: triggers are focusable and Enter/Space-activated, the overlay
@@ -1998,7 +2106,7 @@
       });
       var hoverMap = [
         { sel: '.yt-thumb, .thumb-grid figure', label: 'VIEW' },
-        { sel: '.feat-item, .video-card, .reel-card, .instagram-card', label: 'PLAY' },
+        { sel: '.feat-item, .video-card, .reel-card, .instagram-card, .media-embed, .embed-facade', label: 'PLAY' },
         { sel: '.car-btn', label: '' },
         { sel: 'a, button', label: 'OPEN' }
       ];
@@ -2102,6 +2210,5 @@
     if(document.fonts && document.fonts.ready){ document.fonts.ready.then(function(){ ScrollTrigger.refresh(); }); }
   })();
 </script>
-<script async src="https://www.instagram.com/embed.js"></script>
 </body>
 </html>
