@@ -59,8 +59,23 @@
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
   }
 
+  /* corner-to-corner gradient wash: the same visual language as the hero
+     photo's diagonal tally->flow border (linear-gradient(155deg, tally,
+     flow)), just stretched across the whole page at light/pastel opacity
+     instead of full saturation. A plain linear-gradient on body itself
+     (not a separate ::before layer) scales correctly to the full document
+     height automatically, repeating every ~1400px down the page so the
+     transitions stay present the whole way down rather than fading out
+     after the first screen. */
   body{
-    background:var(--paper);
+    background:
+      linear-gradient(155deg, rgba(255,91,51,0.16) 0%, rgba(255,91,51,0) 30%),
+      linear-gradient(155deg, rgba(47,143,130,0) 68%, rgba(47,143,130,0.18) 100%),
+      linear-gradient(20deg, rgba(232,255,61,0.11) 0%, rgba(232,255,61,0) 24%),
+      linear-gradient(200deg, rgba(214,39,60,0.11) 0%, rgba(214,39,60,0) 24%),
+      var(--paper);
+    background-repeat:repeat-y;
+    background-size:100% 1400px, 100% 1400px, 100% 1400px, 100% 1400px, 100% 100%;
     color:var(--ink);
     font-family:var(--body);
     line-height:1.55;
@@ -68,26 +83,15 @@
     position:relative;
   }
 
-  /* ambient color wash: soft, blurred color pooled the whole way down the
-     page (not just the first viewport), spread across the full width (not
-     just the gutters outside the 1080px content column) so a normal browser
-     window — where the content column fills nearly the whole viewport and
-     there's barely any gutter to bloom into — still reads as colored rather
-     than flat white. Positioned in percentages against the full document
-     height so it scales with the page's real (very long) scroll length. */
+  /* extra soft accent blooms layered on top for a bit more organic variety
+     along the scroll, same palette, same light-pastel treatment */
   body::before{
     content:'';
     position:absolute; inset:0; z-index:-1; pointer-events:none;
     background:
-      radial-gradient(ellipse 620px 760px at 2% 3%, rgba(255,91,51,0.14), transparent 62%),
-      radial-gradient(ellipse 560px 700px at 100% 10%, rgba(47,143,130,0.14), transparent 62%),
-      radial-gradient(ellipse 680px 620px at 55% 17%, rgba(232,255,61,0.10), transparent 65%),
-      radial-gradient(ellipse 600px 720px at 0% 25%, rgba(232,255,61,0.11), transparent 62%),
-      radial-gradient(ellipse 580px 700px at 100% 33%, rgba(214,39,60,0.12), transparent 62%),
-      radial-gradient(ellipse 700px 640px at 32% 40%, rgba(255,91,51,0.09), transparent 65%),
-      radial-gradient(ellipse 620px 760px at 2% 47%, rgba(47,143,130,0.13), transparent 62%),
-      radial-gradient(ellipse 560px 700px at 100% 55%, rgba(255,91,51,0.13), transparent 62%),
-      radial-gradient(ellipse 680px 620px at 62% 62%, rgba(47,143,130,0.09), transparent 65%),
+      radial-gradient(ellipse 680px 620px at 55% 17%, rgba(232,255,61,0.07), transparent 65%),
+      radial-gradient(ellipse 700px 640px at 32% 40%, rgba(255,91,51,0.07), transparent 65%),
+      radial-gradient(ellipse 680px 620px at 62% 62%, rgba(47,143,130,0.07), transparent 65%),
       radial-gradient(ellipse 600px 720px at 0% 70%, rgba(214,39,60,0.11), transparent 62%),
       radial-gradient(ellipse 580px 700px at 100% 78%, rgba(232,255,61,0.10), transparent 62%),
       radial-gradient(ellipse 700px 640px at 40% 86%, rgba(214,39,60,0.09), transparent 65%),
@@ -512,16 +516,16 @@
   /* ---------- PROJECT ACCENT TREATMENTS ---------- */
   .project-block{position:relative; z-index:0; transition:transform .7s ease, box-shadow .25s ease, opacity .7s ease, border-color .2s ease; overflow:hidden;}
   .project-block:hover{border-color:var(--tally);}
-  /* sits in normal flow as the last thing in the expandable panel, not
-     position:absolute — a fixed bottom-offset watermark looked fine against
-     short content but painted on top of tall last-elements like the reel
-     pair or story carousel on other projects, since it doesn't reserve any
-     space of its own */
+  /* anchored to the header/description zone (top offset, not bottom) so it
+     stays visible whether the card is collapsed or expanded, and never
+     collides with the toggle button or anything further down — those
+     positions shift a lot between accordion states, but the header height
+     is constant */
   .proj-watermark{
-    display:block; margin:28px 0 0 auto; width:52px; height:auto; opacity:1;
-    pointer-events:none; filter:none;
+    position:absolute; top:146px; right:14px; width:52px; height:auto; opacity:1;
+    pointer-events:none; z-index:1; filter:none;
   }
-  .project-block.cs .proj-watermark{ width:96px; }
+  .project-block.cs .proj-watermark{ width:96px; top:142px; }
 
   .project-block.gs{
     background:#241209; border-color:#4a2a14; color:#F6E9D8;
@@ -1158,6 +1162,7 @@
     <div class="projects-list">
 
       <div class="project-block cs reveal-left">
+        <img class="proj-watermark" src="assets/cs-logo.png" alt="" aria-hidden="true">
         <div class="project-top">
           <div>
             <div class="project-title">Coach Stolen</div>
@@ -1267,11 +1272,11 @@
           <a class="content-tile" href="https://liquipedia.net/rocketleague/Stolen" target="_blank" rel="noopener"><div class="cv">Liquipedia</div><div class="cd">Esports Profile</div></a>
         </div>
 
-        <img class="proj-watermark" src="assets/cs-logo.png" alt="" aria-hidden="true">
         </div></div>
       </div>
 
       <div class="project-block esp reveal-right">
+        <img class="proj-watermark" src="assets/esp-logo.png" alt="" aria-hidden="true">
         <div class="project-top">
           <div>
             <div class="project-title">Esportian</div>
@@ -1339,11 +1344,11 @@
           <div class="instagram-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWE7V7XCILp/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DWE7V7XCILp/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
         </div>
 
-        <img class="proj-watermark" src="assets/esp-logo.png" alt="" aria-hidden="true">
         </div></div>
       </div>
 
       <div class="project-block gs reveal-left">
+        <img class="proj-watermark" src="assets/gs-logo.png" alt="" aria-hidden="true">
         <div class="project-top">
           <div>
             <div class="project-title">Gangnam Spice</div>
@@ -1437,7 +1442,6 @@
           <button class="car-btn next" type="button" aria-label="Scroll right">›</button>
         </div>
 
-        <img class="proj-watermark" src="assets/gs-logo.png" alt="" aria-hidden="true">
         </div></div>
       </div>
 
