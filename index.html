@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Juan Ignacio Bravo, Content Strategist &amp; Esports Coach</title>
-<link rel="icon" type="image/png" href="assets/cs-logo.png">
+<link rel="icon" type="image/png" href="assets/cs-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -68,22 +68,30 @@
   }
 
   /* ambient color wash: soft, blurred color pooled the whole way down the
-     page (not just the first viewport) so scrolling never hits a flat white
-     stretch. Positioned in percentages against the full document height. */
+     page (not just the first viewport), spread across the full width (not
+     just the gutters outside the 1080px content column) so a normal browser
+     window — where the content column fills nearly the whole viewport and
+     there's barely any gutter to bloom into — still reads as colored rather
+     than flat white. Positioned in percentages against the full document
+     height so it scales with the page's real (very long) scroll length. */
   body::before{
     content:'';
     position:absolute; inset:0; z-index:-1; pointer-events:none;
     background:
-      radial-gradient(ellipse 620px 760px at 2% 3%, rgba(255,91,51,0.12), transparent 60%),
-      radial-gradient(ellipse 560px 700px at 100% 10%, rgba(47,143,130,0.12), transparent 60%),
-      radial-gradient(ellipse 600px 720px at 0% 22%, rgba(232,255,61,0.09), transparent 60%),
-      radial-gradient(ellipse 580px 700px at 100% 33%, rgba(214,39,60,0.10), transparent 60%),
-      radial-gradient(ellipse 620px 760px at 2% 46%, rgba(47,143,130,0.11), transparent 60%),
-      radial-gradient(ellipse 560px 700px at 100% 58%, rgba(255,91,51,0.11), transparent 60%),
-      radial-gradient(ellipse 600px 720px at 0% 70%, rgba(214,39,60,0.09), transparent 60%),
-      radial-gradient(ellipse 580px 700px at 100% 82%, rgba(232,255,61,0.08), transparent 60%),
-      radial-gradient(ellipse 620px 780px at 3% 94%, rgba(255,91,51,0.11), transparent 60%),
-      radial-gradient(ellipse 560px 700px at 97% 100%, rgba(47,143,130,0.12), transparent 60%);
+      radial-gradient(ellipse 620px 760px at 2% 3%, rgba(255,91,51,0.14), transparent 62%),
+      radial-gradient(ellipse 560px 700px at 100% 10%, rgba(47,143,130,0.14), transparent 62%),
+      radial-gradient(ellipse 680px 620px at 55% 17%, rgba(232,255,61,0.10), transparent 65%),
+      radial-gradient(ellipse 600px 720px at 0% 25%, rgba(232,255,61,0.11), transparent 62%),
+      radial-gradient(ellipse 580px 700px at 100% 33%, rgba(214,39,60,0.12), transparent 62%),
+      radial-gradient(ellipse 700px 640px at 32% 40%, rgba(255,91,51,0.09), transparent 65%),
+      radial-gradient(ellipse 620px 760px at 2% 47%, rgba(47,143,130,0.13), transparent 62%),
+      radial-gradient(ellipse 560px 700px at 100% 55%, rgba(255,91,51,0.13), transparent 62%),
+      radial-gradient(ellipse 680px 620px at 62% 62%, rgba(47,143,130,0.09), transparent 65%),
+      radial-gradient(ellipse 600px 720px at 0% 70%, rgba(214,39,60,0.11), transparent 62%),
+      radial-gradient(ellipse 580px 700px at 100% 78%, rgba(232,255,61,0.10), transparent 62%),
+      radial-gradient(ellipse 700px 640px at 40% 86%, rgba(214,39,60,0.09), transparent 65%),
+      radial-gradient(ellipse 620px 780px at 3% 94%, rgba(255,91,51,0.13), transparent 62%),
+      radial-gradient(ellipse 560px 700px at 97% 100%, rgba(47,143,130,0.14), transparent 62%);
   }
 
   a{color:inherit;}
@@ -491,12 +499,12 @@
   /* soft ambient color washes + fine dot-grid texture so the paper-colored
      sections never read as flat empty paper behind the content blocks */
   .sec-alt-bg{background-color:#F0ECE1;}
-  #about, #experience, #skills, .proj-section{
+  #about, #experience, #skills, #testimonials, .proj-section{
     background-image:
       radial-gradient(circle, rgba(23,24,28,0.09) 1.6px, transparent 1.6px),
-      radial-gradient(ellipse 640px 420px at 94% 4%, rgba(255,91,51,0.07), transparent 62%),
-      radial-gradient(ellipse 560px 420px at 2% 98%, rgba(47,143,130,0.08), transparent 62%),
-      radial-gradient(ellipse 500px 380px at 50% 50%, rgba(255,91,51,0.03), transparent 70%);
+      radial-gradient(ellipse 640px 420px at 94% 4%, rgba(255,91,51,0.08), transparent 62%),
+      radial-gradient(ellipse 560px 420px at 2% 98%, rgba(47,143,130,0.09), transparent 62%),
+      radial-gradient(ellipse 500px 380px at 50% 50%, rgba(255,91,51,0.04), transparent 70%);
     background-size:22px 22px, auto, auto, auto;
   }
 
