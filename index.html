@@ -63,16 +63,23 @@
     position:relative;
   }
 
-  /* ambient margin fill: soft, blurred color pooled in the gutters outside the
-     content column so the page edges don't read as flat empty paper */
+  /* ambient color wash: soft, blurred color pooled the whole way down the
+     page (not just the first viewport) so scrolling never hits a flat white
+     stretch. Positioned in percentages against the full document height. */
   body::before{
     content:'';
-    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    position:absolute; inset:0; z-index:-1; pointer-events:none;
     background:
-      radial-gradient(ellipse 480px 900px at 0% 12%, rgba(255,91,51,0.10), transparent 60%),
-      radial-gradient(ellipse 420px 700px at 100% 30%, rgba(47,143,130,0.10), transparent 60%),
-      radial-gradient(ellipse 460px 800px at 3% 78%, rgba(232,255,61,0.07), transparent 60%),
-      radial-gradient(ellipse 440px 700px at 97% 92%, rgba(214,39,60,0.08), transparent 60%);
+      radial-gradient(ellipse 620px 760px at 2% 3%, rgba(255,91,51,0.12), transparent 60%),
+      radial-gradient(ellipse 560px 700px at 100% 10%, rgba(47,143,130,0.12), transparent 60%),
+      radial-gradient(ellipse 600px 720px at 0% 22%, rgba(232,255,61,0.09), transparent 60%),
+      radial-gradient(ellipse 580px 700px at 100% 33%, rgba(214,39,60,0.10), transparent 60%),
+      radial-gradient(ellipse 620px 760px at 2% 46%, rgba(47,143,130,0.11), transparent 60%),
+      radial-gradient(ellipse 560px 700px at 100% 58%, rgba(255,91,51,0.11), transparent 60%),
+      radial-gradient(ellipse 600px 720px at 0% 70%, rgba(214,39,60,0.09), transparent 60%),
+      radial-gradient(ellipse 580px 700px at 100% 82%, rgba(232,255,61,0.08), transparent 60%),
+      radial-gradient(ellipse 620px 780px at 3% 94%, rgba(255,91,51,0.11), transparent 60%),
+      radial-gradient(ellipse 560px 700px at 97% 100%, rgba(47,143,130,0.12), transparent 60%);
   }
 
   a{color:inherit;}
@@ -227,11 +234,13 @@
   .swatch.coach{background:var(--flow);}
 
   .timeline{border-left:1px solid var(--line); margin-left:6px;}
-  .t-item{position:relative; padding:0 0 40px 32px;}
+  .t-item{position:relative; padding:16px 20px 32px 40px; margin-bottom:12px; border-radius:var(--radius-md);}
   .t-item::after{content:''; display:block; clear:both;}
-  .t-item:last-child{padding-bottom:4px;}
+  .t-item:last-child{padding-bottom:20px; margin-bottom:0;}
+  .t-item:nth-child(odd){ background:rgba(255,91,51,0.05); }
+  .t-item:nth-child(even){ background:rgba(47,143,130,0.055); }
   .t-item::before{
-    content:''; position:absolute; left:-6px; top:4px;
+    content:''; position:absolute; left:-6px; top:20px;
     width:11px; height:11px; border-radius:50%;
     background:var(--paper); border:2px solid var(--tally);
   }
@@ -760,26 +769,18 @@
   }
 
   /* ---------- custom cursor ---------- */
-  .cursor-dot, .cursor-ring{
+  /* ring removed: it covered the real pointer and made precise clicks/hovers
+     hard to judge, so only the small trailing dot remains, drawn alongside
+     (not instead of) the native cursor */
+  .cursor-dot{
     position:fixed; top:0; left:0; z-index:1000; pointer-events:none;
     border-radius:50%; transform:translate(-50%,-50%);
     will-change:transform; opacity:0;
+    width:6px; height:6px; background:var(--tally); transition:opacity .2s ease;
   }
-  .cursor-dot{ width:6px; height:6px; background:var(--tally); transition:opacity .2s ease; }
-  .cursor-ring{
-    width:34px; height:34px; border:1px solid var(--ink);
-    transition:width .25s ease, height .25s ease, border-color .25s ease, opacity .2s ease, background .25s ease;
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--mono); font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:var(--paper);
-  }
-  html.cursor-ready .cursor-dot, html.cursor-ready .cursor-ring{ opacity:0.9; }
-  .cursor-ring.hover{ width:66px; height:66px; background:var(--ink); border-color:var(--ink); }
-  .cursor-ring.hover span{ opacity:1; }
-  .cursor-ring span{ opacity:0; transition:opacity .15s ease; }
-  .cursor-ring.on-dark{ border-color:var(--panel-ink); }
-  .cursor-ring.on-dark.hover{ background:var(--panel-ink); color:var(--panel); }
-  @media (pointer:fine){ html.cursor-ready, html.cursor-ready a, html.cursor-ready button, html.cursor-ready .car-btn, html.cursor-ready .embed-facade{ cursor:none; } }
-  @media (pointer:coarse), (prefers-reduced-motion:reduce){ .cursor-dot, .cursor-ring{ display:none !important; } }
+  .cursor-ring{ display:none; }
+  html.cursor-ready .cursor-dot{ opacity:0.9; }
+  @media (pointer:coarse), (prefers-reduced-motion:reduce){ .cursor-dot{ display:none !important; } }
 
   /* ---------- oversized section numerals ---------- */
   section[data-num]{ position:relative; }
@@ -917,6 +918,15 @@
   .t-scatter video{ cursor:default; object-fit:contain; }
   .t-scatter.t-scatter-solo{ width:170px; }
   @media (max-width:760px){ .t-scatter.t-scatter-solo{ width:130px; } }
+  /* landscape media (e.g. OBS broadcast captures): full-width row instead of
+     the narrow floated portrait column, so 16:9 footage isn't squeezed */
+  .t-scatter.t-scatter-wide{
+    float:none; flex-direction:row; flex-wrap:wrap; width:auto; margin:14px 0 0;
+  }
+  .t-scatter.t-scatter-wide img, .t-scatter.t-scatter-wide video{
+    aspect-ratio:16/9; flex:1 1 220px; transform:none !important;
+  }
+  .t-scatter.t-scatter-wide img:hover, .t-scatter.t-scatter-wide video:hover{ transform:translateY(-3px) !important; }
   .t-item.coach .t-scatter img, .t-item.coach .t-scatter video{ box-shadow:3px 3px 0 var(--flow); }
   .t-scatter img:nth-child(odd){ transform:rotate(-3deg); align-self:flex-start; }
   .t-scatter img:nth-child(even){ transform:rotate(3deg); align-self:flex-end; }
@@ -1485,10 +1495,6 @@
       </div>
 
       <div class="t-item create reveal-left">
-        <div class="t-scatter">
-          <video src="assets/about-broadcast-1.mp4" controls preload="metadata" playsinline></video>
-          <video src="assets/about-broadcast-2.mp4" controls preload="metadata" playsinline></video>
-        </div>
         <div class="t-date">Jan 2025 – Dec 2025</div>
         <div class="t-role">Broadcast Team Member</div>
         <div class="t-org">Fisher College, Boston, MA</div>
@@ -1496,6 +1502,10 @@
           <li>Directed and narrated live esports broadcasts.</li>
           <li>Operated OBS at an advanced level for live production and stream management.</li>
         </ul>
+        <div class="t-scatter t-scatter-wide">
+          <video src="assets/about-broadcast-1.mp4" controls preload="metadata" playsinline></video>
+          <video src="assets/about-broadcast-2.mp4" controls preload="metadata" playsinline></video>
+        </div>
       </div>
 
       <div class="t-item coach reveal-right">
@@ -1771,10 +1781,12 @@
   // becomes a real iframe once the visitor clicks (or keyboard-activates) it.
   (function(){
     var YT_RE = /youtube\.com\/embed\/([\w-]+)/;
+    var DRIVE_RE = /drive\.google\.com\/file\/d\/([\w-]+)/;
     var facades = document.querySelectorAll('.embed-facade');
     facades.forEach(function(f){
       var src = f.getAttribute('data-embed-src') || '';
       var ytMatch = src.match(YT_RE);
+      var driveMatch = src.match(DRIVE_RE);
       if(ytMatch){
         f.classList.add('is-youtube');
         var img = document.createElement('img');
@@ -1784,6 +1796,13 @@
         f.insertBefore(img, f.firstChild);
       } else {
         f.classList.add('is-drive');
+        if(driveMatch){
+          var dimg = document.createElement('img');
+          dimg.src = 'https://drive.google.com/thumbnail?id=' + driveMatch[1] + '&sz=w1000';
+          dimg.alt = '';
+          dimg.loading = 'lazy';
+          f.insertBefore(dimg, f.firstChild);
+        }
       }
     });
 
