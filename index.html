@@ -622,6 +622,11 @@
   .project-block.esp .media-cap{color:#9FAE7A;}
   .project-block.esp .feat-item{border-color:#3a4420;}
   .project-block.esp .feat-item.featured{border-color:#E8FF3D;}
+  .project-block.esp .metric-grid{background:#333a1c; border-color:#333a1c;}
+  .project-block.esp .metric-tile{background:#171A0E; color:#EFF3DE;}
+  .project-block.esp .metric-tile:hover{background:#20260f;}
+  .project-block.esp .metric-value{color:#E8FF3D;}
+  .project-block.esp .metric-label{color:#9FAE7A;}
 
   .project-block.cs{
     background:#111214; border-color:#2a2c30; color:#EDEDEF;
@@ -660,6 +665,17 @@
   .stats-item{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; padding:3px 0; }
   .stats-item .v{ font-family:var(--display); font-weight:700; font-size:16px; color:#4fb8ff; white-space:nowrap; }
   .stats-item .l{ font-family:var(--mono); font-size:10px; color:#9297a3; text-transform:uppercase; letter-spacing:0.03em; text-align:right; }
+
+  /* stat card paired with its own descriptive text, side by side, instead
+     of stacked full-width */
+  .competitive-results-row{ display:flex; gap:24px; align-items:flex-start; margin-bottom:28px; }
+  .competitive-results-row .stats-card{ flex:0 0 260px; }
+  .competitive-results-row ul{ flex:1 1 auto; padding-left:18px; font-size:15px; margin:0; color:#c6c9d1; }
+  .competitive-results-row ul li{ margin-bottom:8px; }
+  @media (max-width:700px){
+    .competitive-results-row{ flex-direction:column; }
+    .competitive-results-row .stats-card{ flex:1 1 auto; width:100%; }
+  }
 
   /* event / behind-the-scenes photo strips */
   .bts-strip{display:flex; gap:12px; overflow-x:auto; padding:2px 2px 12px; margin-bottom:28px; scroll-snap-type:x proximity;}
@@ -1275,6 +1291,10 @@
             <div class="stats-item"><span class="v">#1</span><span class="l">Rocket League coach, 2023</span></div>
             <div class="stats-item"><span class="v">742+</span><span class="l">Community members</span></div>
           </div>
+        </div>
+
+        <div class="subhead-mini">Competitive results</div>
+        <div class="competitive-results-row">
           <div class="stats-card">
             <div class="stats-card-title">Competitive Results</div>
             <div class="stats-item"><span class="v">$48,166+</span><span class="l">Combined team winnings</span></div>
@@ -1282,14 +1302,12 @@
             <div class="stats-item"><span class="v">4</span><span class="l">Tournament titles, Leviatán Esports</span></div>
             <div class="stats-item"><span class="v">4x</span><span class="l">2nd place, 2026 collegiate season</span></div>
           </div>
+          <ul>
+            <li>2026 collegiate season (Fisher College): 2nd place at the CRL Spring Championship, NACE (Orlando), CECC (Waco), and NECC (San Antonio) — the program's best results in three years.</li>
+            <li>Leviatán Esports (Buenos Aires, Argentina): 1st place at the GGTECH x RLL Esports Flow Gamergy Open (2022), back-to-back Argentina Games Show (AGS) championships (2021 &amp; 2022), and the TNT Sports Cup.</li>
+            <li>15+ teams and organizations coached since 2020, including Leviatán Esports and New Pampas, with $48,166+ in combined tournament winnings across RLCS, CRL, and other events.</li>
+          </ul>
         </div>
-
-        <div class="subhead-mini">Competitive results</div>
-        <ul style="margin-bottom:28px; padding-left:18px; max-width:70ch; font-size:15px;">
-          <li>2026 collegiate season (Fisher College): 2nd place at the CRL Spring Championship, NACE (Orlando), CECC (Waco), and NECC (San Antonio) — the program's best results in three years.</li>
-          <li>Leviatán Esports (Buenos Aires, Argentina): 1st place at the GGTECH x RLL Esports Flow Gamergy Open (2022), back-to-back Argentina Games Show (AGS) championships (2021 &amp; 2022), and the TNT Sports Cup.</li>
-          <li>15+ teams and organizations coached since 2020, including Leviatán Esports and New Pampas, with $48,166+ in combined tournament winnings across RLCS, CRL, and other events.</li>
-        </ul>
 
         <div class="photo-strip">
           <img src="assets/event-2.jpg" alt="At a Rocket League tournament" loading="lazy">
@@ -1641,26 +1659,8 @@
           <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
         </button>
         <div class="acc-panel" id="panel-exp-4"><div class="acc-inner">
-        <div class="t-scatter">
-          <img src="assets/about-coach-9.jpg" alt="Coaching hand signals mid-match with Royales" loading="lazy">
-          <img src="assets/about-coach-13.jpg" alt="With the Leviatán livery car, Argentina" loading="lazy">
-          <img src="assets/about-coach-15.jpg" alt="Fisher players react to a goal at a LAN event" loading="lazy">
-          <button class="t-more" type="button">+15 more</button>
-          <img class="scatter-extra" src="assets/about-coach-3.jpg" alt="Fisher College Rocket League roster at a bracket board" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-7.jpg" alt="Courtside during a match" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-16.jpg" alt="Stolen and Royales players at their setups" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-1.jpg" alt="With a teammate at a tournament" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-4.jpg" alt="Watching a match unfold" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-14.jpg" alt="With the Leviatán roster on stage" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-12.jpg" alt="With the team at the Kurt Cup" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-11.jpg" alt="Fisher roster at the NACE Grand Finals" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-10.jpg" alt="Celebrating with the team" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-5.jpg" alt="Reacting courtside during a match" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-6.jpg" alt="The roster at their monitors" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-8.jpg" alt="Between matches at a LAN" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-2.jpg" alt="Walking the venue floor at a tournament" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-17.jpg" alt="Sideline moment at a tournament" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-18.jpg" alt="Sideline moment at a tournament" loading="lazy">
+        <div class="t-scatter t-scatter-solo">
+          <img src="assets/about-coach-1.jpg" alt="With a teammate at a tournament" loading="lazy">
         </div>
         <ul>
           <li>Coached professional and competitive players across 15+ teams and organizations since 2020, including Leviatán Esports and New Pampas. RLCS coach for 6+ years, CRL coach for 2 years.</li>
@@ -1679,6 +1679,15 @@
           <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
         </button>
         <div class="acc-panel" id="panel-exp-9"><div class="acc-inner">
+        <div class="t-scatter">
+          <img src="assets/about-coach-2.jpg" alt="Walking the venue floor at a tournament, Leviatán Esports" loading="lazy">
+          <img src="assets/about-coach-9.jpg" alt="Coaching hand signals mid-match with Royales" loading="lazy">
+          <img src="assets/about-coach-10.jpg" alt="Celebrating with the team" loading="lazy">
+          <button class="t-more" type="button">+3 more</button>
+          <img class="scatter-extra" src="assets/about-coach-12.jpg" alt="With the team at the Kurt Cup" loading="lazy">
+          <img class="scatter-extra" src="assets/about-coach-13.jpg" alt="With the Leviatán livery car, Argentina" loading="lazy">
+          <img class="scatter-extra" src="assets/about-coach-14.jpg" alt="With the Leviatán roster on stage" loading="lazy">
+        </div>
         <ul>
           <li>Led the team to 4 tournament titles: GGTECH x RLL Esports Flow Gamergy Open (2022), back-to-back Argentina Games Show (AGS) championships (2021 &amp; 2022), and the TNT Sports Cup ($1,000 prize).</li>
           <li>Qualified for multiple A-Tier RLCS regional events.</li>
@@ -1715,6 +1724,20 @@
           <span class="acc-toggle-label">View details</span><span class="acc-chevron" aria-hidden="true">▾</span>
         </button>
         <div class="acc-panel" id="panel-exp-10"><div class="acc-inner">
+        <div class="t-scatter">
+          <img src="assets/about-coach-11.jpg" alt="Fisher roster at the NACE Grand Finals" loading="lazy">
+          <img src="assets/about-coach-3.jpg" alt="Fisher College Rocket League roster at a bracket board" loading="lazy">
+          <img src="assets/about-coach-15.jpg" alt="Fisher players react to a goal at a LAN event" loading="lazy">
+          <button class="t-more" type="button">+8 more</button>
+          <img class="scatter-extra" src="assets/about-coach-4.jpg" alt="Watching a match unfold" loading="lazy">
+          <img class="scatter-extra" src="assets/about-coach-5.jpg" alt="Reacting courtside during a match" loading="lazy">
+          <img class="scatter-extra" src="assets/about-coach-6.jpg" alt="The roster at their monitors" loading="lazy">
+          <img class="scatter-extra" src="assets/about-coach-7.jpg" alt="Courtside during a match" loading="lazy">
+          <img class="scatter-extra" src="assets/about-coach-8.jpg" alt="Between matches at a LAN" loading="lazy">
+          <img class="scatter-extra" src="assets/about-coach-16.jpg" alt="Stolen and Royales players at their setups" loading="lazy">
+          <img class="scatter-extra" src="assets/about-coach-17.jpg" alt="Sideline moment at a tournament" loading="lazy">
+          <img class="scatter-extra" src="assets/about-coach-18.jpg" alt="Sideline moment at a tournament" loading="lazy">
+        </div>
         <ul>
           <li>Led the program to 2nd-place finishes at four major collegiate tournaments in 2026 — CRL Spring Championship, NACE (Orlando), CECC (Waco), and NECC (San Antonio) — the program's best results in three years.</li>
           <li>Manage the Rocket League esports program, overseeing three competitive rosters; head coach for the main roster, supervising assistant coaches for two secondary rosters.</li>
