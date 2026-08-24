@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F1E7D3">
 <title>Juan Ignacio Bravo | Marketing & Content Strategist</title>
 <meta name="description" content="Marketing & content strategist — 25M+ views, $100K+ revenue generated, and a full brand rebrand led end-to-end. Multilingual, remote-ready, based in Argentina.">
 <meta property="og:title" content="Juan Ignacio Bravo | Marketing & Content Strategist">
@@ -112,6 +113,7 @@
 
   a{color:inherit;}
   :focus-visible{outline:2px solid var(--tally); outline-offset:3px;}
+  a, button, [role="button"]{ touch-action:manipulation; }
 
   .wrap{max-width:1080px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
 
@@ -471,7 +473,8 @@
     border-top:5px solid var(--flow);
   }
   footer .eyebrow{margin-bottom:20px; opacity:1; animation:none;}
-  footer h2.cta-line{
+  .footer-section-head{ border-bottom-color:var(--line-dark); margin-bottom:24px; }
+  footer h3.cta-line{
     font-family:var(--display); font-weight:700; text-transform:uppercase;
     font-size:clamp(30px, 4.2vw, 52px); line-height:1.02; max-width:12ch;
   }
@@ -902,8 +905,8 @@
   .ticker-band:hover .ticker-track{ animation-play-state:paused; }
 
   /* ---------- footer kinetic headline ---------- */
-  h2.cta-line .kinetic-word{ display:inline-block; transition:color .2s ease, transform .2s ease; }
-  h2.cta-line .kinetic-word:hover{ color:var(--tally); transform:translateY(-4px); }
+  h3.cta-line .kinetic-word{ display:inline-block; transition:color .2s ease, transform .2s ease; }
+  h3.cta-line .kinetic-word:hover{ color:var(--tally); transform:translateY(-4px); }
 
   /* ---------- parallax-ready margin art ---------- */
   .margin-img{ will-change:transform; }
@@ -1188,7 +1191,7 @@
     <p class="role"><b>Content Strategist &amp; Creator</b><span class="sep">/</span><b>Esports Coach</b>, RLCS · CRL</p>
     <div class="hero-meta">
       <span>Bahía Blanca, Argentina · Open to Remote</span>
-      <span><img class="flag-icon" src="https://flagcdn.com/w40/es.png" alt="Spain">Spanish · <img class="flag-icon" src="https://flagcdn.com/w40/us.png" alt="USA">English · <img class="flag-icon" src="https://flagcdn.com/w40/br.png" alt="Brazil">Portuguese · <img class="flag-icon" src="https://flagcdn.com/w40/it.png" alt="Italy">Italian</span>
+      <span><img class="flag-icon" src="https://flagcdn.com/w40/es.png" alt="Spain" width="40" height="27">Spanish · <img class="flag-icon" src="https://flagcdn.com/w40/us.png" alt="USA" width="40" height="21">English · <img class="flag-icon" src="https://flagcdn.com/w40/br.png" alt="Brazil" width="40" height="28">Portuguese · <img class="flag-icon" src="https://flagcdn.com/w40/it.png" alt="Italy" width="40" height="27">Italian</span>
       <span>Fisher College '26</span>
     </div>
     <div class="cta-row">
@@ -1197,22 +1200,22 @@
       <a class="btn btn-ghost" href="#contact">Get in Touch</a>
     </div>
     </div>
-    <div class="hero-photo"><img src="assets/headshot.jpg" alt="Juan Ignacio Bravo" loading="eager"></div>
+    <div class="hero-photo"><img src="assets/headshot.jpg" alt="Juan Ignacio Bravo" loading="eager" width="900" height="1350"></div>
     </div>
   </div>
 
   <div class="ticker-band">
     <div class="ticker-track">
-      <span><b>250K+</b> views · <img class="flag-icon" src="https://flagcdn.com/w40/es.png" alt="Spain">YouTube</span>
-      <span><b>500K+</b> views · <img class="flag-icon" src="https://flagcdn.com/w40/us.png" alt="USA">YouTube</span>
+      <span><b>250K+</b> views · <img class="flag-icon" src="https://flagcdn.com/w40/es.png" alt="Spain" width="40" height="27">YouTube</span>
+      <span><b>500K+</b> views · <img class="flag-icon" src="https://flagcdn.com/w40/us.png" alt="USA" width="40" height="21">YouTube</span>
       <span><b>25M+</b> combined views, 10+ Instagram videos</span>
       <span><b>$100K+</b> revenue generated</span>
       <span><b>32K+</b> Twitch followers</span>
       <span><b>6+ yrs</b> RLCS coaching</span>
       <span><b>2 yrs</b> CRL coaching</span>
       <!-- duplicate for seamless loop -->
-      <span><b>250K+</b> views · <img class="flag-icon" src="https://flagcdn.com/w40/es.png" alt="Spain">YouTube</span>
-      <span><b>500K+</b> views · <img class="flag-icon" src="https://flagcdn.com/w40/us.png" alt="USA">YouTube</span>
+      <span><b>250K+</b> views · <img class="flag-icon" src="https://flagcdn.com/w40/es.png" alt="Spain" width="40" height="27">YouTube</span>
+      <span><b>500K+</b> views · <img class="flag-icon" src="https://flagcdn.com/w40/us.png" alt="USA" width="40" height="21">YouTube</span>
       <span><b>25M+</b> combined views, 10+ Instagram videos</span>
       <span><b>$100K+</b> revenue generated</span>
       <span><b>32K+</b> Twitch followers</span>
@@ -1224,16 +1227,16 @@
 
 <section id="projects" class="sec-tally proj-section sec-alt-bg" data-num="01">
   <div class="proj-margin-art">
-    <img class="margin-img left" src="assets/margin-cs.jpg" alt="" aria-hidden="true">
-    <img class="margin-img right" src="assets/margin-esp.jpg" alt="" aria-hidden="true">
-    <img class="margin-img left second" src="assets/margin-gs.jpg" alt="" aria-hidden="true">
+    <img class="margin-img left" src="assets/margin-cs.jpg" alt="" aria-hidden="true" width="700" height="1300">
+    <img class="margin-img right" src="assets/margin-esp.jpg" alt="" aria-hidden="true" width="700" height="1300">
+    <img class="margin-img left second" src="assets/margin-gs.jpg" alt="" aria-hidden="true" width="700" height="1300">
   </div>
   <div class="wrap">
     <div class="section-head"><span class="section-num">01</span><h2>Projects</h2></div>
     <div class="projects-list">
 
       <div class="project-block cs reveal-left">
-        <img class="proj-watermark" src="assets/cs-logo.png" alt="" aria-hidden="true">
+        <img class="proj-watermark" src="assets/cs-logo.png" alt="" aria-hidden="true" width="149" height="53">
         <div class="project-top">
           <div>
             <div class="project-title">Coach Stolen</div>
@@ -1310,18 +1313,18 @@
         </div>
 
         <div class="photo-strip">
-          <img src="assets/event-2.jpg" alt="At a Rocket League tournament" loading="lazy">
-          <img src="assets/event-1.jpg" alt="Coaching at a Rocket League LAN event" loading="lazy" style="object-position:78% center;">
+          <img src="assets/event-2.jpg" alt="At a Rocket League tournament" loading="lazy" width="1200" height="800">
+          <img src="assets/event-1.jpg" alt="Coaching at a Rocket League LAN event" loading="lazy" style="object-position:78% center;" width="1200" height="800">
         </div>
 
         <div class="subhead-mini">YouTube thumbnails</div>
         <div class="yt-grid">
-          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-1.jpg" alt="Speed flip tutorial thumbnail" loading="lazy"></a>
-          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-2.jpg" alt="Boost, airroll, reads tutorial thumbnail" loading="lazy"></a>
-          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-9.jpg" alt="This one matters tutorial thumbnail" loading="lazy"></a>
-          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-4.jpg" alt="Be a wall tutorial thumbnail" loading="lazy"></a>
-          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-12.jpg" alt="How to train tutorial thumbnail" loading="lazy"></a>
-          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-6.jpg" alt="I fixed this tutorial thumbnail" loading="lazy"></a>
+          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-1.jpg" alt="Speed flip tutorial thumbnail" loading="lazy" width="500" height="281"></a>
+          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-2.jpg" alt="Boost, airroll, reads tutorial thumbnail" loading="lazy" width="500" height="281"></a>
+          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-9.jpg" alt="This one matters tutorial thumbnail" loading="lazy" width="500" height="281"></a>
+          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-4.jpg" alt="Be a wall tutorial thumbnail" loading="lazy" width="500" height="375"></a>
+          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-12.jpg" alt="How to train tutorial thumbnail" loading="lazy" width="500" height="281"></a>
+          <a class="yt-thumb" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><img src="assets/cs-thumb-6.jpg" alt="I fixed this tutorial thumbnail" loading="lazy" width="500" height="375"></a>
         </div>
 
         <div class="subhead-mini">Highlights</div>
@@ -1353,8 +1356,8 @@
 
         <div class="subhead-mini">Find the work</div>
         <div class="content-strip content-strip-center">
-          <a class="content-tile" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><div class="cv">YouTube</div><div class="cd">Coach Stolen <img class="flag-icon" src="https://flagcdn.com/w40/us.png" alt="English"></div></a>
-          <a class="content-tile" href="https://www.youtube.com/@ElStolen" target="_blank" rel="noopener"><div class="cv">YouTube</div><div class="cd">El Stolen <img class="flag-icon" src="https://flagcdn.com/w40/es.png" alt="Spanish"></div></a>
+          <a class="content-tile" href="https://www.youtube.com/@Coach.Stolen" target="_blank" rel="noopener"><div class="cv">YouTube</div><div class="cd">Coach Stolen <img class="flag-icon" src="https://flagcdn.com/w40/us.png" alt="English" width="40" height="21"></div></a>
+          <a class="content-tile" href="https://www.youtube.com/@ElStolen" target="_blank" rel="noopener"><div class="cv">YouTube</div><div class="cd">El Stolen <img class="flag-icon" src="https://flagcdn.com/w40/es.png" alt="Spanish" width="40" height="27"></div></a>
           <a class="content-tile" href="https://www.instagram.com/coach.stolen" target="_blank" rel="noopener"><div class="cv">Instagram</div><div class="cd">@coach.stolen</div></a>
           <a class="content-tile" href="https://metafy.gg/@stolen/sessions" target="_blank" rel="noopener"><div class="cv">Metafy</div><div class="cd">Online Store</div></a>
           <a class="content-tile" href="https://liquipedia.net/rocketleague/Stolen" target="_blank" rel="noopener"><div class="cv">Liquipedia</div><div class="cd">Esports Profile</div></a>
@@ -1364,7 +1367,7 @@
       </div>
 
       <div class="project-block esp reveal-right">
-        <img class="proj-watermark" src="assets/esp-logo.png" alt="" aria-hidden="true">
+        <img class="proj-watermark" src="assets/esp-logo.png" alt="" aria-hidden="true" width="300" height="332">
         <div class="project-top">
           <div>
             <div class="project-title">Esportian</div>
@@ -1388,14 +1391,14 @@
 
         <div class="subhead-mini">Design work</div>
         <div class="thumb-grid">
-          <figure><img src="assets/esp-packages.jpg" alt="Esportian packages pricing design" loading="lazy"><figcaption>Packages</figcaption></figure>
-          <figure><img src="assets/esp-sam.jpg" alt="Sam Forrest, full ride to Syracuse, player spotlight design" loading="lazy"><figcaption>Player spotlight</figcaption></figure>
-          <figure><img src="assets/esp-livetalk.jpg" alt="Live Talk with Dr. Seth Jenny, thumbnail design" loading="lazy"><figcaption>Live Talk series</figcaption></figure>
-          <figure><img src="assets/esp-universities.jpg" alt="USA esports universities graphic" loading="lazy"><figcaption>Universities guide</figcaption></figure>
-          <figure><img src="assets/esp-study-usa.jpg" alt="Study in USA for zero dollars, ad creative" loading="lazy"><figcaption>Ad creative</figcaption></figure>
-          <figure><img src="assets/esp-tournaments.jpg" alt="Tournaments icon design" loading="lazy"><figcaption>Icon set</figcaption></figure>
-          <figure><img src="assets/esp-thumb-2k25.jpg" alt="NBA 2K25 College, YouTube thumbnail design" loading="lazy"><figcaption>Thumbnail design</figcaption></figure>
-          <figure><img src="assets/esp-thumb-csgo.jpg" alt="CS:GO Paid My Studies, YouTube thumbnail design" loading="lazy"><figcaption>Thumbnail design</figcaption></figure>
+          <figure><img src="assets/esp-packages.jpg" alt="Esportian packages pricing design" loading="lazy" width="800" height="1080"><figcaption>Packages</figcaption></figure>
+          <figure><img src="assets/esp-sam.jpg" alt="Sam Forrest, full ride to Syracuse, player spotlight design" loading="lazy" width="800" height="450"><figcaption>Player spotlight</figcaption></figure>
+          <figure><img src="assets/esp-livetalk.jpg" alt="Live Talk with Dr. Seth Jenny, thumbnail design" loading="lazy" width="800" height="450"><figcaption>Live Talk series</figcaption></figure>
+          <figure><img src="assets/esp-universities.jpg" alt="USA esports universities graphic" loading="lazy" width="800" height="450"><figcaption>Universities guide</figcaption></figure>
+          <figure><img src="assets/esp-study-usa.jpg" alt="Study in USA for zero dollars, ad creative" loading="lazy" width="800" height="450"><figcaption>Ad creative</figcaption></figure>
+          <figure><img src="assets/esp-tournaments.jpg" alt="Tournaments icon design" loading="lazy" width="800" height="800"><figcaption>Icon set</figcaption></figure>
+          <figure><img src="assets/esp-thumb-2k25.jpg" alt="NBA 2K25 College, YouTube thumbnail design" loading="lazy" width="1200" height="676"><figcaption>Thumbnail design</figcaption></figure>
+          <figure><img src="assets/esp-thumb-csgo.jpg" alt="CS:GO Paid My Studies, YouTube thumbnail design" loading="lazy" width="1200" height="676"><figcaption>Thumbnail design</figcaption></figure>
         </div>
 
         <div class="subhead-mini">Rebrand overview</div>
@@ -1436,7 +1439,7 @@
         <div class="subhead-mini">Reel examples</div>
         <div class="reel-pair">
           <div class="reel-card local-video-facade">
-            <video src="assets/reel-10.mp4" controls preload="metadata" playsinline poster="assets/reel-10-poster.jpg"></video>
+            <video src="assets/reel-10.mp4" controls preload="metadata" playsinline poster="assets/reel-10-poster.jpg" width="1080" height="1920"></video>
             <span class="embed-play" aria-hidden="true"></span>
           </div>
           <div class="instagram-card instagram-card-trimmed"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWE7V7XCILp/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DWE7V7XCILp/" target="_blank" rel="noopener">View on Instagram</a></blockquote></div>
@@ -1446,7 +1449,7 @@
       </div>
 
       <div class="project-block gs reveal-left">
-        <img class="proj-watermark" src="assets/gs-logo.png" alt="" aria-hidden="true">
+        <img class="proj-watermark" src="assets/gs-logo.png" alt="" aria-hidden="true" width="400" height="400">
         <div class="project-top">
           <div>
             <div class="project-title">Gangnam Spice</div>
@@ -1465,11 +1468,11 @@
         <div class="feat-carousel" data-highlight="left">
           <button class="car-btn prev" type="button" aria-label="Scroll left">‹</button>
           <div class="feat-track">
-            <div class="feat-item"><img src="assets/gs-event-1.jpg" alt="Guests at a Gangnam Spice event, in front of the neon sign" loading="lazy"></div>
-            <div class="feat-item"><img src="assets/gs-event-5.jpg" alt="Guests chatting at a Gangnam Spice event table" loading="lazy"></div>
-            <div class="feat-item"><img src="assets/gs-event-8.jpg" alt="Gangnam Spice event, full house" loading="lazy"></div>
-            <div class="feat-item"><img src="assets/gs-event-6.jpg" alt="Guests laughing at a Gangnam Spice event" loading="lazy"></div>
-            <div class="feat-item"><img src="assets/gs-event-2.jpg" alt="Guests at a table during a Gangnam Spice event" loading="lazy"></div>
+            <div class="feat-item"><img src="assets/gs-event-1.jpg" alt="Guests at a Gangnam Spice event, in front of the neon sign" loading="lazy" width="900" height="1353"></div>
+            <div class="feat-item"><img src="assets/gs-event-5.jpg" alt="Guests chatting at a Gangnam Spice event table" loading="lazy" width="900" height="1353"></div>
+            <div class="feat-item"><img src="assets/gs-event-8.jpg" alt="Gangnam Spice event, full house" loading="lazy" width="900" height="1353"></div>
+            <div class="feat-item"><img src="assets/gs-event-6.jpg" alt="Guests laughing at a Gangnam Spice event" loading="lazy" width="900" height="1352"></div>
+            <div class="feat-item"><img src="assets/gs-event-2.jpg" alt="Guests at a table during a Gangnam Spice event" loading="lazy" width="900" height="1352"></div>
           </div>
           <button class="car-btn next" type="button" aria-label="Scroll right">›</button>
         </div>
@@ -1500,11 +1503,11 @@
         <div class="feat-carousel" data-highlight="middle" data-ratio="vertical">
           <button class="car-btn prev" type="button" aria-label="Scroll left">‹</button>
           <div class="feat-track">
-            <div class="feat-item"><img src="assets/gs-menu-hero.jpg" alt="Ttokbokki menu design graphic" loading="lazy"></div>
-            <div class="feat-item"><img src="assets/gs-menu-tenders.jpg" alt="Tenders and wings menu design graphic" loading="lazy"></div>
-            <div class="feat-item"><img src="assets/gs-menu-sandwich.jpg" alt="Chicken sandwich menu design graphic" loading="lazy"></div>
-            <div class="feat-item"><img src="assets/gs-menu-kimchi.jpg" alt="Kimchi fried rice menu design graphic" loading="lazy"></div>
-            <div class="feat-item"><img src="assets/gs-menu-more.jpg" alt="And much more, Gangnam Spice story graphic" loading="lazy"></div>
+            <div class="feat-item"><img src="assets/gs-menu-hero.jpg" alt="Ttokbokki menu design graphic" loading="lazy" width="700" height="1244"></div>
+            <div class="feat-item"><img src="assets/gs-menu-tenders.jpg" alt="Tenders and wings menu design graphic" loading="lazy" width="700" height="1244"></div>
+            <div class="feat-item"><img src="assets/gs-menu-sandwich.jpg" alt="Chicken sandwich menu design graphic" loading="lazy" width="700" height="1244"></div>
+            <div class="feat-item"><img src="assets/gs-menu-kimchi.jpg" alt="Kimchi fried rice menu design graphic" loading="lazy" width="700" height="1244"></div>
+            <div class="feat-item"><img src="assets/gs-menu-more.jpg" alt="And much more, Gangnam Spice story graphic" loading="lazy" width="700" height="1244"></div>
           </div>
           <button class="car-btn next" type="button" aria-label="Scroll right">›</button>
         </div>
@@ -1529,13 +1532,13 @@
         <div class="feat-carousel" data-highlight="middle" data-ratio="vertical">
           <button class="car-btn prev" type="button" aria-label="Scroll left">‹</button>
           <div class="feat-track">
-            <div class="feat-item"><video src="assets/story-prep-cook.mp4" controls preload="metadata" playsinline></video></div>
-            <div class="feat-item"><video src="assets/story-cashier.mp4" controls preload="metadata" playsinline></video></div>
-            <div class="feat-item"><video src="assets/story-full-team.mp4" controls preload="metadata" playsinline></video></div>
-            <div class="feat-item"><video src="assets/story-tenders-wings.mp4" controls preload="metadata" playsinline></video></div>
-            <div class="feat-item"><video src="assets/story-chicken-sandwich.mp4" controls preload="metadata" playsinline></video></div>
-            <div class="feat-item"><video src="assets/story-kimchi-fried-rice.mp4" controls preload="metadata" playsinline></video></div>
-            <div class="feat-item"><video src="assets/story-ttoekbokki.mp4" controls preload="metadata" playsinline></video></div>
+            <div class="feat-item"><video src="assets/story-prep-cook.mp4" controls preload="metadata" playsinline width="720" height="1280"></video></div>
+            <div class="feat-item"><video src="assets/story-cashier.mp4" controls preload="metadata" playsinline width="720" height="1280"></video></div>
+            <div class="feat-item"><video src="assets/story-full-team.mp4" controls preload="metadata" playsinline width="720" height="1280"></video></div>
+            <div class="feat-item"><video src="assets/story-tenders-wings.mp4" controls preload="metadata" playsinline width="720" height="1280"></video></div>
+            <div class="feat-item"><video src="assets/story-chicken-sandwich.mp4" controls preload="metadata" playsinline width="720" height="1280"></video></div>
+            <div class="feat-item"><video src="assets/story-kimchi-fried-rice.mp4" controls preload="metadata" playsinline width="720" height="1280"></video></div>
+            <div class="feat-item"><video src="assets/story-ttoekbokki.mp4" controls preload="metadata" playsinline width="720" height="1280"></video></div>
           </div>
           <button class="car-btn next" type="button" aria-label="Scroll right">›</button>
         </div>
@@ -1557,15 +1560,15 @@
         <p><strong>Currently seeking full-time remote opportunities in marketing, social media, or content strategy.</strong></p>
         <div class="subhead-mini" style="margin-top:30px;">Off the clock</div>
         <div class="about-scatter">
-          <img src="assets/about-personal-ski.jpg" alt="Skiing" loading="lazy">
-          <img src="assets/about-personal-guitar.jpg" alt="Playing guitar at a Fisher College open mic" loading="lazy">
-          <div class="scatter-video"><video src="assets/about-personal-dab.mp4" controls preload="metadata" playsinline></video><button class="expand-btn" type="button" aria-label="Enlarge video">⤢</button></div>
-          <div class="scatter-video"><video src="assets/about-personal-piano.mp4" controls preload="metadata" playsinline></video><button class="expand-btn" type="button" aria-label="Enlarge video">⤢</button></div>
-          <div class="scatter-video"><video src="assets/about-personal-penalty.mp4" controls preload="metadata" playsinline></video><button class="expand-btn" type="button" aria-label="Enlarge video">⤢</button></div>
+          <img src="assets/about-personal-ski.jpg" alt="Skiing" loading="lazy" width="1200" height="2607">
+          <img src="assets/about-personal-guitar.jpg" alt="Playing guitar at a Fisher College open mic" loading="lazy" width="1200" height="1963">
+          <div class="scatter-video"><video src="assets/about-personal-dab.mp4" controls preload="metadata" playsinline width="640" height="1140"></video><button class="expand-btn" type="button" aria-label="Enlarge video">⤢</button></div>
+          <div class="scatter-video"><video src="assets/about-personal-piano.mp4" controls preload="metadata" playsinline width="640" height="1130"></video><button class="expand-btn" type="button" aria-label="Enlarge video">⤢</button></div>
+          <div class="scatter-video"><video src="assets/about-personal-penalty.mp4" controls preload="metadata" playsinline width="480" height="854"></video><button class="expand-btn" type="button" aria-label="Enlarge video">⤢</button></div>
         </div>
       </div>
       <div class="about-facts reveal-right">
-        <div class="portrait-wrap"><img src="assets/headshot.jpg" alt="Juan Ignacio Bravo" loading="lazy"></div>
+        <div class="portrait-wrap"><img src="assets/headshot.jpg" alt="Juan Ignacio Bravo" loading="lazy" width="900" height="1350"></div>
         <div class="fact-row"><span>Based in</span><span>Bahía Blanca, Argentina — Open to Remote</span></div>
         <div class="fact-row"><span>Citizenship</span><span>Argentina &amp; EU (Spain)</span></div>
         <div class="fact-row"><span>Education</span><span>BA Comm. &amp; Media Studies, Summa Cum Laude</span></div>
@@ -1574,7 +1577,7 @@
         <div class="fact-row"><span>Coaching focus</span><span>Flow state, mindfulness</span></div>
         <div class="fact-row"><span>Languages</span><span>4</span></div>
         <div class="award-badge">
-          <img src="assets/about-falcon-award.jpg" alt="Falcon Award plaque, Fisher College" loading="lazy">
+          <img src="assets/about-falcon-award.jpg" alt="Falcon Award plaque, Fisher College" loading="lazy" width="1200" height="2134">
           <div>
             <div class="award-badge-label">Falcon Award</div>
             <div class="award-badge-sub">Esports · Academic Year 2025–26</div>
@@ -1604,7 +1607,7 @@
         </button>
         <div class="acc-panel" id="panel-exp-1"><div class="acc-inner">
         <div class="t-scatter t-scatter-solo">
-          <img src="assets/about-ra-speech.jpg" alt="Speaking at Fisher College's Public Speaking Contest" loading="lazy">
+          <img src="assets/about-ra-speech.jpg" alt="Speaking at Fisher College's Public Speaking Contest" loading="lazy" width="1200" height="1371">
         </div>
         <ul>
           <li>Directly manage a 60+ resident floor community and support 300+ residents campus-wide.</li>
@@ -1623,7 +1626,7 @@
         </button>
         <div class="acc-panel" id="panel-exp-2"><div class="acc-inner">
         <div class="t-scatter t-scatter-solo">
-          <img src="assets/esp-events.jpg" alt="Esportian at an event" loading="lazy">
+          <img src="assets/esp-events.jpg" alt="Esportian at an event" loading="lazy" width="800" height="800">
         </div>
         <ul>
           <li>Restructured and led the marketing department during a full rebrand of Esportian, aligning strategy, content, and partnerships under one direction.</li>
@@ -1643,8 +1646,8 @@
         </button>
         <div class="acc-panel" id="panel-exp-3"><div class="acc-inner">
         <div class="t-scatter">
-          <img src="assets/about-gs-extra-13.jpg" alt="Gangnam Spice storefront" loading="lazy">
-          <img src="assets/about-gs-extra-1.jpg" alt="Frying wings in the kitchen" loading="lazy">
+          <img src="assets/about-gs-extra-13.jpg" alt="Gangnam Spice storefront" loading="lazy" width="1200" height="1796">
+          <img src="assets/about-gs-extra-1.jpg" alt="Frying wings in the kitchen" loading="lazy" width="1200" height="1796">
         </div>
         <ul>
           <li>Grew Instagram over 90 days: +98.4% followers, +1,176.1% accounts reached (46,858 total), +215.6% profile visits, +103.6% external link taps.</li>
@@ -1663,7 +1666,7 @@
         </button>
         <div class="acc-panel" id="panel-exp-4"><div class="acc-inner">
         <div class="t-scatter t-scatter-solo">
-          <img src="assets/about-coach-independent.jpg" alt="Juan Ignacio Bravo, independent Rocket League coach" loading="lazy">
+          <img src="assets/about-coach-independent.jpg" alt="Juan Ignacio Bravo, independent Rocket League coach" loading="lazy" width="900" height="900">
         </div>
         <ul>
           <li>Coached professional and competitive players across 15+ teams and organizations since 2020, including Leviatán Esports and New Pampas. RLCS coach for 6+ years, CRL coach for 2 years.</li>
@@ -1683,10 +1686,10 @@
         </button>
         <div class="acc-panel" id="panel-exp-9"><div class="acc-inner">
         <div class="t-scatter">
-          <img src="assets/about-coach-13.jpg" alt="With the Leviatán livery car, Argentina" loading="lazy">
-          <img src="assets/about-coach-10.jpg" alt="Celebrating with the team" loading="lazy">
-          <img src="assets/about-coach-12.jpg" alt="With the team at the Kurt Cup" loading="lazy">
-          <img src="assets/about-coach-14.jpg" alt="With the Leviatán roster on stage" loading="lazy">
+          <img src="assets/about-coach-13.jpg" alt="With the Leviatán livery car, Argentina" loading="lazy" width="1200" height="800">
+          <img src="assets/about-coach-10.jpg" alt="Celebrating with the team" loading="lazy" width="1200" height="1800">
+          <img src="assets/about-coach-12.jpg" alt="With the team at the Kurt Cup" loading="lazy" width="1200" height="1600">
+          <img src="assets/about-coach-14.jpg" alt="With the Leviatán roster on stage" loading="lazy" width="1200" height="676">
         </div>
         <ul>
           <li>Led the team to 4 tournament titles: GGTECH x RLL Esports Flow Gamergy Open (2022), back-to-back Argentina Games Show (AGS) championships (2021 &amp; 2022), and the TNT Sports Cup ($1,000 prize).</li>
@@ -1710,8 +1713,8 @@
           <li>Operated OBS at an advanced level for live production and stream management.</li>
         </ul>
         <div class="t-scatter t-scatter-wide">
-          <video src="assets/about-broadcast-1.mp4" controls preload="metadata" playsinline></video>
-          <video src="assets/about-broadcast-2.mp4" controls preload="metadata" playsinline></video>
+          <video src="assets/about-broadcast-1.mp4" controls preload="metadata" playsinline width="1280" height="720"></video>
+          <video src="assets/about-broadcast-2.mp4" controls preload="metadata" playsinline width="1280" height="720"></video>
         </div>
         </div></div>
       </div>
@@ -1725,21 +1728,21 @@
         </button>
         <div class="acc-panel" id="panel-exp-10"><div class="acc-inner">
         <div class="t-scatter">
-          <img src="assets/about-coach-11.jpg" alt="Fisher roster at the NACE Grand Finals" loading="lazy">
-          <img src="assets/about-coach-3.jpg" alt="Fisher College Rocket League roster at a bracket board" loading="lazy">
-          <img src="assets/about-coach-15.jpg" alt="Fisher players react to a goal at a LAN event" loading="lazy">
+          <img src="assets/about-coach-11.jpg" alt="Fisher roster at the NACE Grand Finals" loading="lazy" width="1200" height="798">
+          <img src="assets/about-coach-3.jpg" alt="Fisher College Rocket League roster at a bracket board" loading="lazy" width="1200" height="800">
+          <img src="assets/about-coach-15.jpg" alt="Fisher players react to a goal at a LAN event" loading="lazy" width="1200" height="802">
           <button class="t-more" type="button">+11 more</button>
-          <img class="scatter-extra" src="assets/about-coach-2.jpg" alt="Walking the venue floor at a tournament" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-9.jpg" alt="Coaching hand signals mid-match" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-1.jpg" alt="With a teammate at a tournament" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-4.jpg" alt="Watching a match unfold" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-5.jpg" alt="Reacting courtside during a match" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-6.jpg" alt="The roster at their monitors" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-7.jpg" alt="Courtside during a match" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-8.jpg" alt="Between matches at a LAN" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-16.jpg" alt="Stolen and Royales players at their setups" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-17.jpg" alt="Sideline moment at a tournament" loading="lazy">
-          <img class="scatter-extra" src="assets/about-coach-18.jpg" alt="Sideline moment at a tournament" loading="lazy">
+          <img class="scatter-extra" src="assets/about-coach-2.jpg" alt="Walking the venue floor at a tournament" loading="lazy" width="1200" height="800">
+          <img class="scatter-extra" src="assets/about-coach-9.jpg" alt="Coaching hand signals mid-match" loading="lazy" width="1200" height="800">
+          <img class="scatter-extra" src="assets/about-coach-1.jpg" alt="With a teammate at a tournament" loading="lazy" width="1200" height="800">
+          <img class="scatter-extra" src="assets/about-coach-4.jpg" alt="Watching a match unfold" loading="lazy" width="1200" height="800">
+          <img class="scatter-extra" src="assets/about-coach-5.jpg" alt="Reacting courtside during a match" loading="lazy" width="1200" height="800">
+          <img class="scatter-extra" src="assets/about-coach-6.jpg" alt="The roster at their monitors" loading="lazy" width="1200" height="800">
+          <img class="scatter-extra" src="assets/about-coach-7.jpg" alt="Courtside during a match" loading="lazy" width="1200" height="1800">
+          <img class="scatter-extra" src="assets/about-coach-8.jpg" alt="Between matches at a LAN" loading="lazy" width="1200" height="1800">
+          <img class="scatter-extra" src="assets/about-coach-16.jpg" alt="Stolen and Royales players at their setups" loading="lazy" width="802" height="1200">
+          <img class="scatter-extra" src="assets/about-coach-17.jpg" alt="Sideline moment at a tournament" loading="lazy" width="802" height="1200">
+          <img class="scatter-extra" src="assets/about-coach-18.jpg" alt="Sideline moment at a tournament" loading="lazy" width="1200" height="802">
         </div>
         <ul>
           <li>Led the program to 2nd-place finishes at four major collegiate tournaments in 2026 — CRL Spring Championship, NACE (Orlando), CECC (Waco), and NECC (San Antonio) — the program's best results in three years.</li>
@@ -1758,8 +1761,8 @@
         </button>
         <div class="acc-panel" id="panel-exp-6"><div class="acc-inner">
         <div class="t-scatter">
-          <img src="assets/about-soccer.jpg" alt="Running a youth soccer drill" loading="lazy">
-          <video src="assets/about-soccer-1.mp4" controls preload="metadata" playsinline></video>
+          <img src="assets/about-soccer.jpg" alt="Running a youth soccer drill" loading="lazy" width="1200" height="2134">
+          <video src="assets/about-soccer-1.mp4" controls preload="metadata" playsinline width="960" height="1706"></video>
         </div>
         <ul>
           <li>Coordinated training sessions for groups of 10–20 children ages 2–8.</li>
@@ -1777,8 +1780,8 @@
         </button>
         <div class="acc-panel" id="panel-exp-7"><div class="acc-inner">
         <div class="t-scatter">
-          <img src="assets/about-creator-1.jpg" alt="Shooting in DUMBO, Brooklyn" loading="lazy">
-          <img src="assets/about-creator-4.jpg" alt="Shooting on the Brooklyn Bridge" loading="lazy">
+          <img src="assets/about-creator-1.jpg" alt="Shooting in DUMBO, Brooklyn" loading="lazy" width="1200" height="1600">
+          <img src="assets/about-creator-4.jpg" alt="Shooting on the Brooklyn Bridge" loading="lazy" width="1200" height="1600">
         </div>
         <ul>
           <li>Built brand identity and storytelling scripts across YouTube, Twitch, and Instagram.</li>
@@ -1908,7 +1911,7 @@
         <p class="testimonial-quote">I had the pleasure of supervising Juan in his role as a Resident Assistant at Fisher College. He not only displayed incredible time management and motivation to complete his responsibilities independently, but also proved to be a wonderful leader for our students. A natural problem-solver, Juan was always ready to advocate for his residents' wellbeing and approached every scenario with positivity and professionalism. I wholeheartedly recommend Juan for any role he decides to take on because he puts his best work into every project that comes his way.</p>
         <div class="testimonial-attr">
           <a class="testimonial-photo" href="https://www.linkedin.com/in/emily-deller-mba-4b23071b0/" target="_blank" rel="noopener" aria-label="Emily Deller on LinkedIn">
-            <img src="assets/testimonial-emily.jpg" alt="Emily Deller" loading="lazy">
+            <img src="assets/testimonial-emily.jpg" alt="Emily Deller" loading="lazy" width="400" height="400">
           </a>
           <div>
             <div class="testimonial-name"><a href="https://www.linkedin.com/in/emily-deller-mba-4b23071b0/" target="_blank" rel="noopener">Emily Deller, MBA</a></div>
@@ -1920,7 +1923,7 @@
         <p class="testimonial-quote">Juan always puts his best effort in whatever he does. He is proactive, positive, and open minded individual. It was a pleasure to teach him. His team project, "Branding analysis of Gangnam Spice," which was conducted in my Brand Strategy class in 2025 was one of the best student work. It gave him the opportunity to do his internship with Gangnam Spice as a social media and marketing.</p>
         <div class="testimonial-attr">
           <a class="testimonial-photo" href="https://www.linkedin.com/in/syashleychung/" target="_blank" rel="noopener" aria-label="SY (Ashley) Chung on LinkedIn">
-            <img src="assets/testimonial-chung.jpg" alt="SY (Ashley) Chung" loading="lazy">
+            <img src="assets/testimonial-chung.jpg" alt="SY (Ashley) Chung" loading="lazy" width="400" height="400">
           </a>
           <div>
             <div class="testimonial-name"><a href="https://www.linkedin.com/in/syashleychung/" target="_blank" rel="noopener">SY (Ashley) Chung, DBA</a></div>
@@ -1979,8 +1982,9 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-intro">
+        <div class="section-head footer-section-head"><span class="section-num">06</span><h2>Contact</h2></div>
         <div class="eyebrow"><span class="dot"></span> Let's talk</div>
-        <h2 class="cta-line">Building something in content or esports? Let's talk.</h2>
+        <h3 class="cta-line">Building something in content or esports? Let's talk.</h3>
       </div>
       <div class="contact-cards">
         <a class="contact-card" href="mailto:juanibravo2011@gmail.com">
@@ -2546,7 +2550,7 @@
     }
 
     /* ---- footer headline: split into independently hoverable words ---- */
-    var ctaLine = document.querySelector('h2.cta-line');
+    var ctaLine = document.querySelector('h3.cta-line');
     if(ctaLine && !ctaLine.dataset.split){
       ctaLine.dataset.split = '1';
       ctaLine.innerHTML = ctaLine.textContent.trim().split(' ').map(function(w){
